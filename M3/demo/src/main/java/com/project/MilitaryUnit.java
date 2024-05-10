@@ -24,5 +24,5 @@ public interface MilitaryUnit {
 
     public abstract void setExperience(int n);
 
-    public abstract void getExperience();
+    public abstract int getExperience();
 }
