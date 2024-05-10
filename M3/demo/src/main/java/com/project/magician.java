@@ -11,13 +11,7 @@ public class magician extends specialunit{
         this.experience = 0;
     }
 
-    public magician(){
-        this.armor = 0;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_MAGICIAN;
-        this.experience = 0;
-    }
-
+  
     @Override
     public int attack(){
         int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
