@@ -1,15 +1,15 @@
 package com.project;
 
-public class ArrowTower extends DefenseUnit{
+public class Catapult extends DefenseUnit{
   
-    private final static int ARMOR_ARROWTOWER = 200;
-    private final static int BASE_DAMAGE_ARROWTOWER = 80;
+    private final static int ARMOR_CATAPULT = 1200;
+    private final static int BASE_DAMAGE_CATAPULT = 250;
 
     
-    public ArrowTower(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_ARROWTOWER + (int)(defenseTechnologyLevel*PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*ARMOR_ARROWTOWER/100;
+    public Catapult(int defenseTechnologyLevel, int attackTechnologyLevel){
+        this.armor = ARMOR_CATAPULT + (int)(defenseTechnologyLevel*PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*ARMOR_CATAPULT/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_ARROWTOWER + (int)(attackTechnologyLevel*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ARROWTOWER/100;
+        this.baseDamage = BASE_DAMAGE_CATAPULT + (int)(attackTechnologyLevel*PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY)*BASE_DAMAGE_CATAPULT/100;
         this.experience = 0;
         this.sanctified = false;
     }
@@ -35,32 +35,32 @@ public class ArrowTower extends DefenseUnit{
 
     @Override
     public int getFoodCost(){
-        return FOOD_COST_ARROWTOWER;
+        return FOOD_COST_CATAPULT;
     }
 
     @Override
     public int getWoodCost(){
-        return WOOD_COST_ARROWTOWER;
+        return WOOD_COST_CATAPULT;
     }
 
     @Override
     public int getIronCost(){
-        return IRON_COST_ARROWTOWER;
+        return IRON_COST_CATAPULT;
     }
 
     @Override
     public int getManaCost(){
-        return MANA_COST_ARROWTOWER;
+        return MANA_COST_CATAPULT;
     }
 
     @Override
     public int getChanceGeneratinWaste(){
-        return CHANCE_GENERATNG_WASTE_ARROWTOWER;
+        return CHANCE_GENERATNG_WASTE_CATAPULT;
     }
 
     @Override
     public int getChanceAttackAgain(){
-        return CHANCE_ATTACK_AGAIN_ARROWTOWER;
+        return CHANCE_ATTACK_AGAIN_CATAPULT;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class ArrowTower extends DefenseUnit{
 
     @Override
     public UnitTypes getType() {
-        return UnitTypes.ARROWTOWER;
+        return UnitTypes.CATAPULT;
     }
 
 }
