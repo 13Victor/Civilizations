@@ -6,7 +6,7 @@ public interface MilitaryUnit {
 
     public abstract void takeDamage(int recivedDamage);
 
-    public abstract int getAcActualArmor();
+    public abstract int getActualArmor();
 
     public abstract int getFoodCost();
 
@@ -24,5 +24,5 @@ public interface MilitaryUnit {
 
     public abstract void setExperience(int n);
 
-    public abstract void getExperience();
+    public abstract int getExperience();
 }
