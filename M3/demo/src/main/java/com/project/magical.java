@@ -8,4 +8,6 @@ public class magical extends specialunit{
         this.baseDamage = baseDamage;
         this.experience = 0;
     }
+
+    
 }

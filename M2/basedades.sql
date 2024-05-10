@@ -59,3 +59,50 @@ CREATE TABLE defense_unit_stats
   CONSTRAINT pk_primary_defense PRIMARY KEY (civilization_id, unit_id),
   CONSTRAINT type_unit_defense CHECK (type_unit IN('ArrowTower', 'Catapult','RocketLauncherTower'))
 );
+
+CREATE TABLE battle_stats (
+    civilization_id NUMBER(5) NOT NULL,
+    num_battle NUMBER(5) NOT NULL,
+    wood_acquired NUMBER(5),
+    iron_acquired NUMBER(5),
+    CONSTRAINT pk_battle_stats PRIMARY KEY (civilization_id, num_battle),
+	FOREIGN KEY (civilization_id) REFERENCES civilization_stats(civilization_id)
+);
+CREATE TABLE civilization_attack_stats (
+    civilization_id NUMBER(5) NOT NULL,
+    num_battle NUMBER(5) NOT NULL,
+    type_stats VARCHAR(50),
+    initial_stats NUMBER(5),
+    drops NUMBER(5),
+    CONSTRAINT pk_civilization_attack_stats PRIMARY KEY (civilization_id, num_battle, type_stats),
+    FOREIGN KEY (civilization_id, num_battle) REFERENCES battle_stats(civilization_id, num_battle)
+);
+
+CREATE TABLE civilization_defense_stats (
+    civilization_id NUMBER(5) NOT NULL,
+    num_battle NUMBER(5) NOT NULL,
+    type_stats VARCHAR2(50),
+    initial_stats NUMBER(5),
+    drops NUMBER(5),
+    CONSTRAINT pk_civilization_defense_stats PRIMARY KEY (civilization_id, num_battle, type_stats),
+    FOREIGN KEY (civilization_id, num_battle) REFERENCES battle_stats(civilization_id, num_battle)
+);
+
+CREATE TABLE civilization_special_stats (
+    civilization_id NUMBER(5) NOT NULL,
+    num_battle NUMBER(5) NOT NULL,
+    type_stats VARCHAR(50),
+    initial_stats VARCHAR2(50),
+    drops VARCHAR(50),
+    CONSTRAINT pk_civilization_special_stats PRIMARY KEY (civilization_id, num_battle, type_stats),
+    FOREIGN KEY (civilization_id, num_battle) REFERENCES battle_stats(civilization_id, num_battle)
+);
+
+CREATE TABLE battle_log (
+    civilization_id NUMBER(5) NOT NULL,
+    num_battle NUMBER(5) NOT NULL,
+    num_line NUMBER(5) NOT NULL,
+    log_entry VARCHAR2(50),
+    CONSTRAINT pk_battle_log PRIMARY KEY (civilization_id, num_battle, num_line),
+    FOREIGN KEY (civilization_id, num_battle) REFERENCES battle_stats(civilization_id, num_battle)
+);
