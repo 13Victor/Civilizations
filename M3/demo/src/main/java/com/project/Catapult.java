@@ -6,10 +6,10 @@ public class Catapult extends DefenseUnit{
     private final static int BASE_DAMAGE_CATAPULT = 250;
 
     
-    public Catapult(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_CATAPULT + (int)(defenseTechnologyLevel*PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*ARMOR_CATAPULT/100;
+    public Catapult(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_CATAPULT + (int)(technologyDefenseLevel*PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY)*ARMOR_CATAPULT/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_CATAPULT + (int)(attackTechnologyLevel*PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY)*BASE_DAMAGE_CATAPULT/100;
+        this.baseDamage = BASE_DAMAGE_CATAPULT + (int)(technologyAttackLevel*PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY)*BASE_DAMAGE_CATAPULT/100;
         this.experience = 0;
         this.sanctified = false;
     }
