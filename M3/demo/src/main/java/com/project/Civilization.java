@@ -136,36 +136,36 @@ public class Civilization {
 
     public void newChurch() {
         try {
-            if (food < Variables.FOOD_COST_CHURCH) {
-                throw new ResourceException("Food",  Variables.FOOD_COST_CHURCH, food);
-            }
             if (wood < Variables.WOOD_COST_CHURCH) {
                 throw new ResourceException("wood",  Variables.WOOD_COST_CHURCH, wood);
             }
+            if (food < Variables.FOOD_COST_CHURCH) {
+                throw new ResourceException("Food",  Variables.FOOD_COST_CHURCH, food);
+            }
+            if (mana < Variables.MANA_COST_CHURCH) {
+                throw new ResourceException("Mana",  Variables.MANA_COST_CHURCH, mana);
+            }
             if (iron < Variables.IRON_COST_CHURCH) {
                 throw new ResourceException("Iron",  Variables.IRON_COST_CHURCH, iron);
-            }
-            if (mana < Variables.WOOD_COST_CHURCH) {
-                throw new ResourceException("Mana",  Variables.MANA_COST_CHURCH, mana);
             }
         } catch (ResourceException e) {
             System.out.println(e.getMessage());
             return;
         }
         church++;
-        wood -= Variables.WOOD_COST_CHURCH;
         iron -= Variables.IRON_COST_CHURCH;
-        food -= Variables.FOOD_COST_CHURCH;
         mana -= Variables.MANA_COST_CHURCH;
+        wood -= Variables.WOOD_COST_CHURCH;
+        food -= Variables.FOOD_COST_CHURCH;
     }
 
     public void newMagicTower() {
         try {
-            if (food < Variables.FOOD_COST_MAGICTOWER) {
-                throw new ResourceException("Food", Variables.FOOD_COST_MAGICTOWER, food);
-            }
             if (wood < Variables.WOOD_COST_MAGICTOWER) {
                 throw new ResourceException("wood", Variables.WOOD_COST_MAGICTOWER, wood);
+            }
+            if (food < Variables.FOOD_COST_MAGICTOWER) {
+                throw new ResourceException("Food", Variables.FOOD_COST_MAGICTOWER, food);
             }
             if (iron < Variables.IRON_COST_MAGICTOWER) {
                 throw new ResourceException("Iron", Variables.IRON_COST_MAGICTOWER, iron);
@@ -175,18 +175,18 @@ public class Civilization {
             return;
         }
         magicTower++;
-        food -= Variables.FOOD_COST_MAGICTOWER;
         wood -= Variables.WOOD_COST_MAGICTOWER;
+        food -= Variables.FOOD_COST_MAGICTOWER;
         iron -= Variables.IRON_COST_MAGICTOWER;
     }
 
     public void newFarm() {
         try {
+            if (wood < Variables.WOOD_COST_FARM) {
+                throw new ResourceException("Wood", Variables.WOOD_COST_FARM, wood);
+            }
             if (food < Variables.FOOD_COST_FARM) {
                 throw new ResourceException("Food", Variables.FOOD_COST_FARM, food);
-            }
-            if (wood < Variables.WOOD_COST_FARM) {
-                throw new ResourceException("wood", Variables.WOOD_COST_FARM, wood);
             }
             if (iron < Variables.IRON_COST_FARM) {
                 throw new ResourceException("Iron", Variables.IRON_COST_FARM, iron);
@@ -196,18 +196,18 @@ public class Civilization {
             return;
         }
         farm++;
-        food -= Variables.FOOD_COST_FARM;
         wood -= Variables.WOOD_COST_FARM;
+        food -= Variables.FOOD_COST_FARM;
         iron -= Variables.IRON_COST_FARM;
     }
 
     public void newCarpentry() {
         try {
+            if (wood < Variables.WOOD_COST_CARPENTRY) {
+                throw new ResourceException("Wood", Variables.WOOD_COST_CARPENTRY, wood);
+            }
             if (food < Variables.FOOD_COST_CARPENTRY) {
                 throw new ResourceException("Food", Variables.FOOD_COST_CARPENTRY, food);
-            }
-            if (wood < Variables.WOOD_COST_CARPENTRY) {
-                throw new ResourceException("wood", Variables.WOOD_COST_CARPENTRY, wood);
             }
             if (iron < Variables.IRON_COST_CARPENTRY) {
                 throw new ResourceException("Iron", Variables.IRON_COST_CARPENTRY, iron);
@@ -218,8 +218,8 @@ public class Civilization {
             return;
         }
         carpentry++;
-        food -= Variables.FOOD_COST_CARPENTRY;
         wood -= Variables.WOOD_COST_CARPENTRY;
+        food -= Variables.FOOD_COST_CARPENTRY;
         iron -= Variables.IRON_COST_CARPENTRY;
     }
 
@@ -310,11 +310,11 @@ public class Civilization {
         iron -= totalIronCost;
     }
 
-    public int AddUnit(UnitTypes unitType, int amount) {
-        int foodCost = 0;
-        int woodCost = 0;
-        int ironCost = 0;
-        int manaCost = 0;
+    public int AddUnit(uType unitType, int amount) {
+        int woodCost;
+        int manaCost;
+        int foodCost;
+        int ironCost;
 
         int total = 0;
         
@@ -332,48 +332,48 @@ public class Civilization {
                 return total;
             }
             switch (unitType) {
-                case SWORDSMAN:
+                case Swordsman:
                     foodCost = Variables.FOOD_COST_SWORDSMAN;
                     woodCost = Variables.WOOD_COST_SWORDSMAN;
                     ironCost = Variables.IRON_COST_SWORDSMAN;
                     break;
-                case SPEARMAN:
+                case Spearman:
                     foodCost = Variables.FOOD_COST_SPEARMAN;
                     woodCost = Variables.WOOD_COST_SPEARMAN;
                     ironCost = Variables.IRON_COST_SPEARMAN;
                     break;
-                case CROSSBOW:
+                case Crossbow:
                     foodCost = Variables.FOOD_COST_CROSSBOW;
                     woodCost = Variables.WOOD_COST_CROSSBOW;
                     ironCost = Variables.IRON_COST_CROSSBOW;
                     break;
-                case CANNON:
+                case Cannon:
                     foodCost = Variables.FOOD_COST_CANNON;
                     woodCost = Variables.WOOD_COST_CANNON;
                     ironCost = Variables.IRON_COST_CANNON;
                     break;
-                case ARROWTOWER:
+                case ArrowTower:
                     foodCost = Variables.FOOD_COST_ARROWTOWER;
                     woodCost = Variables.WOOD_COST_ARROWTOWER;
                     ironCost = Variables.IRON_COST_ARROWTOWER;
                     break;
-                case CATAPULT:
+                case Catapult:
                     foodCost = Variables.FOOD_COST_CATAPULT;
                     woodCost = Variables.WOOD_COST_CATAPULT;
                     ironCost = Variables.IRON_COST_CATAPULT;
                     break;
-                case ROCKETLAUNCHERTOWER:
+                case RocketLauncherTower:
                     foodCost = Variables.FOOD_COST_ROCKETLAUNCHERTOWER;
                     woodCost = Variables.WOOD_COST_ROCKETLAUNCHERTOWER;
                     ironCost = Variables.IRON_COST_ROCKETLAUNCHERTOWER;
                     break;
-                case MAGICIAN:
+                case Magician:
                     foodCost = Variables.FOOD_COST_MAGICIAN;
                     woodCost = Variables.WOOD_COST_MAGICIAN;
                     ironCost = Variables.IRON_COST_MAGICIAN;
                     manaCost = Variables.MANA_COST_MAGICIAN;             
                     break;
-                case PRIEST:
+                case Priest:
                     foodCost = Variables.FOOD_COST_PRIEST;
                     woodCost = Variables.WOOD_COST_PRIEST;
                     ironCost = Variables.IRON_COST_PRIEST;
@@ -400,32 +400,32 @@ public class Civilization {
                 return total;
             }
             switch (unitType) {
-                case SWORDSMAN:
+                case Swordsman:
                     army.add(new Swordsman());
                     break;
-                case SPEARMAN:
+                case Spearman:
                     army.add(new Spearman());
                     break;
-                case CROSSBOW:
+                case Crossbow:
                     army.add(new Crossbow());
                     break;
-                case CANNON:
+                case Cannon:
                     army.add(new Cannon()); 
                     break;               
-                case ARROWTOWER:
+                case ArrowTower:
                     army.add(new ArrowTower());
                     break;
-                case CATAPULT:
+                case Catapult:
                     army.add(new Catapult());
                     break;
-                case ROCKETLAUNCHERTOWER:
+                case RocketLauncherTower:
                     army.add(new RocketLauncherTower());
                     break;
-                case MAGICIAN:
+                case Magician:
                     //army.add(new Magician());
                     break;
-                case PRIEST:
-                    System.out.println("ENTRA PRIEST");
+                case Priest:
+                    System.out.println("Un PRIEST nos vendice con su llegada");
                     army.add(new Priest());
                     break;
                 default:
@@ -441,7 +441,7 @@ public class Civilization {
         return total;
     }
 
-    public int CountUnits(UnitTypes unitType) {
+    public int CountUnits(uType unitType) {
         int result = 0;
         for (MilitaryUnit unit : army) {
             if (unit.getType() == unitType) {
