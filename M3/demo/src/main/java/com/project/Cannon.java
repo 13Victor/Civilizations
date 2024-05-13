@@ -6,10 +6,10 @@ public class Cannon extends AttackUnit{
     private final static int BASE_DAMAGE_CANNON = 700;
 
     
-    public Cannon(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_CANNON + (int)(defenseTechnologyLevel*PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*ARMOR_CANNON/100;
+    public Cannon(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_CANNON + (int)(technologyDefenseLevel*PLUS_ARMOR_CANNON_BY_TECHNOLOGY)*ARMOR_CANNON/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_CANNON + (int)(attackTechnologyLevel*PLUS_ATTACK_CANNON_BY_TECHNOLOGY)*BASE_DAMAGE_CANNON/100;
+        this.baseDamage = BASE_DAMAGE_CANNON + (int)(technologyAttackLevel*PLUS_ATTACK_CANNON_BY_TECHNOLOGY)*BASE_DAMAGE_CANNON/100;
         this.experience = 0;
         this.sanctified = false;
     }
