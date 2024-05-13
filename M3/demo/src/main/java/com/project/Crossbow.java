@@ -6,10 +6,10 @@ public class Crossbow extends AttackUnit{
     private final static int BASE_DAMAGE_CROSSBOW = 1000;
 
     
-    public Crossbow(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_CROSSBOW + (int)(defenseTechnologyLevel*PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*ARMOR_CROSSBOW/100;
+    public Crossbow(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_CROSSBOW + (int)(technologyDefenseLevel*PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY)*ARMOR_CROSSBOW/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_CROSSBOW + (int)(attackTechnologyLevel*PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY)*BASE_DAMAGE_CROSSBOW/100;
+        this.baseDamage = BASE_DAMAGE_CROSSBOW + (int)(technologyAttackLevel*PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY)*BASE_DAMAGE_CROSSBOW/100;
         this.experience = 0;
         this.sanctified = false;
     }
