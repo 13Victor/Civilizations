@@ -18,12 +18,17 @@ public interface Variables {
     // TECHNOLOGY COST
     public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST = 2000;
     public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST = 2000;
-    public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST = 60;
-    public final int UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST = 60;
     public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST = 0;
     public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST = 0;
-    public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST = 0;
+    public final int UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST = 50;
+    public final int UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST = 50;
+    // PLUS TECHNOLOGY COST
     public final int UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST = 0;
+    public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST = 0;
+    public final int UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST = 60;
+    public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST = 60;
+    public final int UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST = 50;
+    public final int UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST = 50;
     // COST ATTACK UNITS
     public final int FOOD_COST_SWORDSMAN = 8000;
     public final int FOOD_COST_SPEARMAN = 5000;
@@ -80,6 +85,7 @@ public interface Variables {
     public final int FOOD_COST_CHURCH = 5000;
     public final int WOOD_COST_CHURCH = 10000;
     public final int IRON_COST_CHURCH = 12000;
+    public final int MANA_COST_CHURCH = 10000;
     public final int FOOD_COST_MAGICTOWER = 5000;
     public final int WOOD_COST_MAGICTOWER = 10000;
     public final int IRON_COST_MAGICTOWER = 12000;
