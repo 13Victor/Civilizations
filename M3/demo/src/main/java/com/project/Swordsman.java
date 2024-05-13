@@ -6,10 +6,10 @@ public class Swordsman extends AttackUnit{
     private final static int BASE_DAMAGE_SWORDSMAN = 80;
 
     
-    public Swordsman(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_SWORDSMAN + (int)(defenseTechnologyLevel*PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*ARMOR_SWORDSMAN/100;
+    public Swordsman(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_SWORDSMAN + (int)(technologyDefenseLevel*PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*ARMOR_SWORDSMAN/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SWORDSMAN + (int)(attackTechnologyLevel*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SWORDSMAN/100;
+        this.baseDamage = BASE_DAMAGE_SWORDSMAN + (int)(technologyAttackLevel*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SWORDSMAN/100;
         this.experience = 0;
         this.sanctified = false;
     }
