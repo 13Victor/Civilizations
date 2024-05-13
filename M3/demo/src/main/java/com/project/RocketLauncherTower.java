@@ -6,10 +6,10 @@ public class RocketLauncherTower extends DefenseUnit{
     private final static int BASE_DAMAGE_ROCKETLAUNCHERTOWER = 2000;
 
     
-    public RocketLauncherTower(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_ROCKETLAUNCHERTOWER + (int)(defenseTechnologyLevel*PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*ARMOR_ROCKETLAUNCHERTOWER/100;
+    public RocketLauncherTower(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_ROCKETLAUNCHERTOWER + (int)(technologyDefenseLevel*PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*ARMOR_ROCKETLAUNCHERTOWER/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_ROCKETLAUNCHERTOWER + (int)(attackTechnologyLevel*PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ROCKETLAUNCHERTOWER/100;
+        this.baseDamage = BASE_DAMAGE_ROCKETLAUNCHERTOWER + (int)(technologyAttackLevel*PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ROCKETLAUNCHERTOWER/100;
         this.experience = 0;
         this.sanctified = false;
     }
