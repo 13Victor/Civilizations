@@ -6,10 +6,10 @@ public class Spearman extends AttackUnit{
     private final static int BASE_DAMAGE_SPEARMAN = 150;
 
     
-    public Spearman(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_SPEARMAN + (int)(defenseTechnologyLevel*PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*ARMOR_SPEARMAN/100;
+    public Spearman(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_SPEARMAN + (int)(technologyDefenseLevel*PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY)*ARMOR_SPEARMAN/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SPEARMAN + (int)(attackTechnologyLevel*PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SPEARMAN/100;
+        this.baseDamage = BASE_DAMAGE_SPEARMAN + (int)(technologyAttackLevel*PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SPEARMAN/100;
         this.experience = 0;
         this.sanctified = false;
     }
