@@ -6,10 +6,10 @@ public class ArrowTower extends DefenseUnit{
     private final static int BASE_DAMAGE_ARROWTOWER = 80;
 
     
-    public ArrowTower(int defenseTechnologyLevel, int attackTechnologyLevel){
-        this.armor = ARMOR_ARROWTOWER + (int)(defenseTechnologyLevel*PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*ARMOR_ARROWTOWER/100;
+    public ArrowTower(int technologyDefenseLevel, int technologyAttackLevel){
+        this.armor = ARMOR_ARROWTOWER + (int)(technologyDefenseLevel*PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*ARMOR_ARROWTOWER/100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_ARROWTOWER + (int)(attackTechnologyLevel*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ARROWTOWER/100;
+        this.baseDamage = BASE_DAMAGE_ARROWTOWER + (int)(technologyAttackLevel*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ARROWTOWER/100;
         this.experience = 0;
         this.sanctified = false;
     }
