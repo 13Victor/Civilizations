@@ -26,10 +26,17 @@ controls.minDistance = 15;
 controls.maxDistance = 15;
 controls.minPolarAngle = 1.1;
 controls.maxPolarAngle = 1.45;
-controls.minAzimuthAngle = 0.2; // Define el ángulo mínimo en el eje X
-controls.maxAzimuthAngle = 0.75;  // Define el ángulo máximo en el eje X
+controls.minAzimuthAngle = 0.21; // Define el ángulo mínimo en el eje X
+controls.maxAzimuthAngle = 0.6;  // Define el ángulo máximo en el eje X
 
-controls.autoRotate = false;
+controls.autoRotate = true;
+controls.autoRotateDirection = -1;
+controls.autoRotateSpeed = 0.1;
+
+
+
+
+
 controls.target = new THREE.Vector3(0, 1, 0);
 controls.update();
 
