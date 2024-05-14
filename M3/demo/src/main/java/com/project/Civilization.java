@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 
-public class Civilization {
+public class Civilization implements Variables{
     private static final double UPGRADE_TECH_COST_INCREASE_PERCENTAGE = 0.10;
     private int upgradeDefenseTechnologyIronCost = 100;
     private int upgradeAttackTechnologyIronCost = 100;
@@ -32,6 +32,17 @@ public class Civilization {
     //Constantes de PRIEST
     private static final int PRIEST_WOOD_COST = 15;
     private static final int PRIEST_IRON_COST = 5;
+
+    //Constantes de unidades Defensivas 
+
+    //Constantes de ARROWTOWER
+    private static final int WOOD_COST_ARROWTOWER = 2000;
+    //Constantes de CATAPULT
+    private static final int WOOD_COST_CATAPULT = 4000;
+    private static final int IRON_COST_CATAPULT = 500;
+    // Constantes de ROCKETLAUNCHERTOWER
+    private static final int WOOD_COST_ROCKETLAUNCHERTOWER = 50000;
+    private static final int IRON_COST_ROCKETLAUNCHERTOWER = 5000;
 
     private int technologyDefense;
     private int technologyAttack;
