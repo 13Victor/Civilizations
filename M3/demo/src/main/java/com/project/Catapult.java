@@ -78,9 +78,6 @@ public class Catapult extends DefenseUnit{
         return experience;
     }
 
-    @Override
-    public UnitTypes getType() {
-        return UnitTypes.CATAPULT;
-    }
+
 
 }

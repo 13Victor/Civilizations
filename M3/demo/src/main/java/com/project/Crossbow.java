@@ -86,9 +86,5 @@ public class Crossbow extends AttackUnit{
         return experience;
     }
 
-    @Override
-    public UnitTypes getType() {
-        return UnitTypes.Crossbow;
-    }
 
 }

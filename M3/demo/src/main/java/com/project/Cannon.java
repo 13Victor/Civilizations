@@ -86,9 +86,5 @@ public class Cannon extends AttackUnit{
         return experience;
     }
 
-    @Override
-    public UnitTypes getType() {
-        return UnitTypes.CANNON;
-    }
 
 }

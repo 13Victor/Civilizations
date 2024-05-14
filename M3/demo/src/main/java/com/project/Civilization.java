@@ -1,9 +1,38 @@
 package com.project;
-
 import java.util.ArrayList;
 
+
+
 public class Civilization {
-    private static Civilization instance;
+    private static final double UPGRADE_TECH_COST_INCREASE_PERCENTAGE = 0.10;
+    private int upgradeDefenseTechnologyIronCost = 100;
+    private int upgradeAttackTechnologyIronCost = 100;
+    private int upgradeDefenseTechnologyWoodCost = 0;
+    private int upgradeAttackTechnologyWoodCost = 0;
+
+    //Constantes de unidades de ataque
+
+    //Constantes de SWORDSMAN
+    private static final int FOOD_COST_SWORDSMAN = 8000;
+    private static final int WOOD_COST_SWORDSMAN = 3000;
+    private static final int IRON_COST_SWORDSMAN = 50;
+    //Constantes de SPEARMAN
+    private static final int FOOD_COST_SPEARMAN = 5000;
+    private static final int WOOD_COST_SPEARMAN = 6500;
+    private static final int IRON_COST_SPEARMAN = 6500;
+    //Constantes de CROSSBOW
+    private static final int WOOD_COST_CROSSBOW = 45000;
+    private static final int IRON_COST_CROSSBOW = 7000;
+    //Constantes de CANNON
+    private static final int WOOD_COST_CANNON = 30000;
+    private static final int IRON_COST_CANNON = 15000;
+    //Constantes de MAGICIAN
+    private static final int MAGICIAN_WOOD_COST = 20;
+    private static final int MAGICIAN_MANA_COST = 10;
+    //Constantes de PRIEST
+    private static final int PRIEST_WOOD_COST = 15;
+    private static final int PRIEST_IRON_COST = 5;
+
     private int technologyDefense;
     private int technologyAttack;
     private int wood;
@@ -16,18 +45,17 @@ public class Civilization {
     private int smithy;
     private int carpentry;
     private int battles;
-    private ArrayList<MilitaryUnit> army;
+    private ArrayList<MilitaryUnit>[] army;
 
-    private Civilization() {
-        army = new ArrayList<>(9);
-    }
-
-    public static Civilization getInstance() {
-        if (instance == null) {
-            instance = new Civilization();
+    @SuppressWarnings("unchecked")
+    public Civilization() {
+        army = new ArrayList[9];
+        for (int i = 0; i < 9; i++) {
+            army[i] = new ArrayList<MilitaryUnit>();
         }
-        return instance;
     }
+
+    // Getters and Setters
 
     public int getTechnologyDefense() {
         return technologyDefense;
@@ -125,341 +153,111 @@ public class Civilization {
         this.battles = battles;
     }
 
-    public ArrayList<MilitaryUnit> getArmy() {
+    public ArrayList<MilitaryUnit>[] getArmy() {
         return army;
     }
 
-    public void setArmy(ArrayList<MilitaryUnit> army) {
+    public void setArmy(ArrayList<MilitaryUnit>[] army) {
         this.army = army;
     }
 
-
-    public void newChurch() {
-        try {
-            if (wood < Variables.WOOD_COST_CHURCH) {
-                throw new ResourceException("wood",  Variables.WOOD_COST_CHURCH, wood);
-            }
-            if (food < Variables.FOOD_COST_CHURCH) {
-                throw new ResourceException("Food",  Variables.FOOD_COST_CHURCH, food);
-            }
-            if (mana < Variables.MANA_COST_CHURCH) {
-                throw new ResourceException("Mana",  Variables.MANA_COST_CHURCH, mana);
-            }
-            if (iron < Variables.IRON_COST_CHURCH) {
-                throw new ResourceException("Iron",  Variables.IRON_COST_CHURCH, iron);
-            }
-        } catch (ResourceException e) {
-            System.out.println(e.getMessage());
-            return;
+    public void upgradeTechnologyDefense() throws ResourceException {
+        int currentCost = upgradeDefenseTechnologyIronCost;
+        if (iron < currentCost || wood < upgradeDefenseTechnologyWoodCost) {
+            throw new ResourceException("Not enough resources to upgrade defense technology.");
         }
-        church++;
-        iron -= Variables.IRON_COST_CHURCH;
-        mana -= Variables.MANA_COST_CHURCH;
-        wood -= Variables.WOOD_COST_CHURCH;
-        food -= Variables.FOOD_COST_CHURCH;
+        upgradeDefenseTechnologyIronCost += (int) (currentCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
+        upgradeDefenseTechnologyWoodCost += (int) (upgradeDefenseTechnologyWoodCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
     }
 
-    public void newMagicTower() {
-        try {
-            if (wood < Variables.WOOD_COST_MAGICTOWER) {
-                throw new ResourceException("wood", Variables.WOOD_COST_MAGICTOWER, wood);
-            }
-            if (food < Variables.FOOD_COST_MAGICTOWER) {
-                throw new ResourceException("Food", Variables.FOOD_COST_MAGICTOWER, food);
-            }
-            if (iron < Variables.IRON_COST_MAGICTOWER) {
-                throw new ResourceException("Iron", Variables.IRON_COST_MAGICTOWER, iron);
-            }
-        } catch (ResourceException e) {
-            System.out.println(e.getMessage());
-            return;
+    public void upgradeTechnologyAttack() throws ResourceException {
+        int currentCost = upgradeAttackTechnologyIronCost;
+        if (iron < currentCost || wood < upgradeAttackTechnologyWoodCost) {
+            throw new ResourceException("Not enough resources to upgrade attack technology.");
         }
-        magicTower++;
-        wood -= Variables.WOOD_COST_MAGICTOWER;
-        food -= Variables.FOOD_COST_MAGICTOWER;
-        iron -= Variables.IRON_COST_MAGICTOWER;
+        upgradeAttackTechnologyIronCost += (int) (currentCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
+        upgradeAttackTechnologyWoodCost += (int) (upgradeAttackTechnologyWoodCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
     }
 
-    public void newFarm() {
-        try {
-            if (wood < Variables.WOOD_COST_FARM) {
-                throw new ResourceException("Wood", Variables.WOOD_COST_FARM, wood);
-            }
-            if (food < Variables.FOOD_COST_FARM) {
-                throw new ResourceException("Food", Variables.FOOD_COST_FARM, food);
-            }
-            if (iron < Variables.IRON_COST_FARM) {
-                throw new ResourceException("Iron", Variables.IRON_COST_FARM, iron);
-            }
-        } catch (ResourceException e) {
-            System.out.println(e.getMessage());
-            return;
+    public void newSwordsman(int n) throws ResourceException {
+        int availableUnits = Math.min(Math.min(food / FOOD_COST_SWORDSMAN, wood / WOOD_COST_SWORDSMAN), iron / IRON_COST_SWORDSMAN);
+        int unitsToAdd = Math.min(n, availableUnits);
+        if (unitsToAdd == 0) {
+            throw new ResourceException("Not enough resources to recruit any swordsman.");
         }
-        farm++;
-        wood -= Variables.WOOD_COST_FARM;
-        food -= Variables.FOOD_COST_FARM;
-        iron -= Variables.IRON_COST_FARM;
     }
 
-    public void newCarpentry() {
-        try {
-            if (wood < Variables.WOOD_COST_CARPENTRY) {
-                throw new ResourceException("Wood", Variables.WOOD_COST_CARPENTRY, wood);
-            }
-            if (food < Variables.FOOD_COST_CARPENTRY) {
-                throw new ResourceException("Food", Variables.FOOD_COST_CARPENTRY, food);
-            }
-            if (iron < Variables.IRON_COST_CARPENTRY) {
-                throw new ResourceException("Iron", Variables.IRON_COST_CARPENTRY, iron);
-            }
-
-        } catch (ResourceException e) {
-            System.out.println(e.getMessage());
-            return;
+    public void newSpearman(int n) throws ResourceException {
+        int availableUnits = Math.min(Math.min(food / FOOD_COST_SPEARMAN, wood / WOOD_COST_SPEARMAN), iron / IRON_COST_SPEARMAN);
+        int unitsToAdd = Math.min(n, availableUnits);
+        if (unitsToAdd == 0) {
+            throw new ResourceException("Not enough resources to recruit any spearman.");
         }
-        carpentry++;
-        wood -= Variables.WOOD_COST_CARPENTRY;
-        food -= Variables.FOOD_COST_CARPENTRY;
-        iron -= Variables.IRON_COST_CARPENTRY;
     }
 
-    public void newSmithy() {
-        try{
-            if (iron < Variables.IRON_COST_SMITHY) {
-                throw new ResourceException("Iron", Variables.IRON_COST_SMITHY, iron);
-            }
-        }catch(ResourceException e){
-            System.out.println(e.getMessage());
-            return;
+    public void newCrossbow(int n) throws ResourceException {
+        int availableUnits = Math.min(wood / WOOD_COST_CROSSBOW, iron / IRON_COST_CROSSBOW);
+        int UnitsToAdd = Math.min(n, availableUnits);
+        if (UnitsToAdd == 0) {
+            throw new ResourceException("Not enough resources to recruit any crossbow");
         }
-        smithy++;
-        iron -= Variables.IRON_COST_SMITHY;
     }
 
-    public void upgradeTechnologyDefense() {
-        if (technologyDefense >= 50) {
-            System.out.println("Defense technology level has reached the limit");
-            return;
+    public void newCannon(int n) throws ResourceException {
+        int availableUnits = Math.min(wood / WOOD_COST_CANNON, iron / IRON_COST_CANNON);
+        int UnitsToAdd = Math.min(n, availableUnits);
+        if (UnitsToAdd == 0) {
+            throw new ResourceException("Not enough resources to recruit any cannon");
         }
-        int baseFoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST;
-        int plusFoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST * technologyDefense;
-        int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
-        
-        int baseWoodCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST;
-        int plusWoodPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST * technologyDefense;
-        int totalWoodCost = baseWoodCost + baseWoodCost*plusWoodPercentage/100;
-
-        int baseIronCost = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
-        int plusIronPercentage = Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST * technologyDefense;
-        int totalIronCost = baseIronCost + baseIronCost*plusIronPercentage/100;
-
-        try {
-            if (food < totalFoodCost) {
-                throw new ResourceException("Food", totalFoodCost, food);
-            }
-            if (wood < totalWoodCost) {
-                throw new ResourceException("wood", totalWoodCost, wood);
-            }
-            if (iron < totalIronCost) {
-                throw new ResourceException("Iron", totalIronCost, iron);
-            }
-        } catch (ResourceException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        technologyDefense++;
-        food -= totalFoodCost;
-        wood -= totalWoodCost;
-        iron -= totalIronCost;
     }
 
-    public void upgradeTechnologyAttack() {
-        if (technologyAttack >= 50) {
-            System.out.println("Attack technology level has reached the limit");
-            return;
+    public void newMagician(int n) throws ResourceException, BuildingException {
+        if (magicTower == 0) {
+            throw new BuildingException("You need at least one magic tower to recruit magicians.");
         }
-        int baseFoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST;
-        int plusFoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST * technologyDefense;
-        int totalFoodCost = baseFoodCost + baseFoodCost*plusFoodPercentage/100;
-        
-        int baseWoodCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST;
-        int plusWoodPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST * technologyDefense;
-        int totalWoodCost = baseWoodCost + baseWoodCost*plusWoodPercentage/100;
-
-        int baseIronCost = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
-        int plusIronPercentage = Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST * technologyDefense;
-        int totalIronCost = baseIronCost + baseIronCost*plusIronPercentage/100;
-
-        try {
-            if (food < totalFoodCost) {
-                throw new ResourceException("Food", totalFoodCost, food);
-            }
-            if (wood < totalWoodCost) {
-                throw new ResourceException("wood", totalWoodCost, wood);
-            }
-            if (iron < totalIronCost) {
-                throw new ResourceException("Iron", totalIronCost, iron);
-            }
-        } catch (ResourceException e) {
-            System.out.println(e.getMessage());
-            return;
+        int availableUnits = Math.min(wood / MAGICIAN_WOOD_COST, mana / MAGICIAN_MANA_COST);
+        int unitsToAdd = Math.min(n, availableUnits);
+        if (unitsToAdd == 0) {
+            throw new ResourceException("Not enough resources to recruit any magicians.");
         }
-        technologyAttack++;
-        food -= totalFoodCost;
-        wood -= totalWoodCost;
-        iron -= totalIronCost;
+        // Lógica para añadir unidades de magos
     }
 
-    public int AddUnit(uType unitType, int amount) {
-        int woodCost;
-        int manaCost;
-        int foodCost;
-        int ironCost;
-
-        int total = 0;
-        
-        for(int i = 0;i<amount;i++){
-            try {
-                if (unitType == UnitTypes.PRIEST && CountUnits(unitType) >= church) {
-                    throw new BuildingException("To Train a new Priest","Churches");
-                }
-                if (unitType == UnitTypes.MAGICIAN && CountUnits(unitType) >= magicTower) {
-                    throw new BuildingException("To Train a new Magician", "Magicians");
-                }
-            }
-            catch (BuildingException e) {
-                System.out.println(e.getMessage());
-                return total;
-            }
-            switch (unitType) {
-                case Swordsman:
-                    foodCost = Variables.FOOD_COST_SWORDSMAN;
-                    woodCost = Variables.WOOD_COST_SWORDSMAN;
-                    ironCost = Variables.IRON_COST_SWORDSMAN;
-                    break;
-                case Spearman:
-                    foodCost = Variables.FOOD_COST_SPEARMAN;
-                    woodCost = Variables.WOOD_COST_SPEARMAN;
-                    ironCost = Variables.IRON_COST_SPEARMAN;
-                    break;
-                case Crossbow:
-                    foodCost = Variables.FOOD_COST_CROSSBOW;
-                    woodCost = Variables.WOOD_COST_CROSSBOW;
-                    ironCost = Variables.IRON_COST_CROSSBOW;
-                    break;
-                case Cannon:
-                    foodCost = Variables.FOOD_COST_CANNON;
-                    woodCost = Variables.WOOD_COST_CANNON;
-                    ironCost = Variables.IRON_COST_CANNON;
-                    break;
-                case ArrowTower:
-                    foodCost = Variables.FOOD_COST_ARROWTOWER;
-                    woodCost = Variables.WOOD_COST_ARROWTOWER;
-                    ironCost = Variables.IRON_COST_ARROWTOWER;
-                    break;
-                case Catapult:
-                    foodCost = Variables.FOOD_COST_CATAPULT;
-                    woodCost = Variables.WOOD_COST_CATAPULT;
-                    ironCost = Variables.IRON_COST_CATAPULT;
-                    break;
-                case RocketLauncherTower:
-                    foodCost = Variables.FOOD_COST_ROCKETLAUNCHERTOWER;
-                    woodCost = Variables.WOOD_COST_ROCKETLAUNCHERTOWER;
-                    ironCost = Variables.IRON_COST_ROCKETLAUNCHERTOWER;
-                    break;
-                case Magician:
-                    foodCost = Variables.FOOD_COST_MAGICIAN;
-                    woodCost = Variables.WOOD_COST_MAGICIAN;
-                    ironCost = Variables.IRON_COST_MAGICIAN;
-                    manaCost = Variables.MANA_COST_MAGICIAN;             
-                    break;
-                case Priest:
-                    foodCost = Variables.FOOD_COST_PRIEST;
-                    woodCost = Variables.WOOD_COST_PRIEST;
-                    ironCost = Variables.IRON_COST_PRIEST;
-                    manaCost = Variables.MANA_COST_PRIEST;
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + unitType);
-            }
-            try {
-                if (wood < woodCost) {
-                    throw new ResourceException("wood", woodCost, wood);
-                }
-                if (food < foodCost) {
-                    throw new ResourceException("food", foodCost, food);
-                }
-                if (iron < ironCost) {
-                    throw new ResourceException("iron", ironCost, iron);
-                }
-                if (mana < manaCost) {
-                    throw new ResourceException("mana", manaCost, mana);
-                }
-            } catch (ResourceException e) {
-                System.out.println(e.getMessage());
-                return total;
-            }
-            switch (unitType) {
-                case Swordsman:
-                    army.add(new Swordsman());
-                    break;
-                case Spearman:
-                    army.add(new Spearman());
-                    break;
-                case Crossbow:
-                    army.add(new Crossbow());
-                    break;
-                case Cannon:
-                    army.add(new Cannon()); 
-                    break;               
-                case ArrowTower:
-                    army.add(new ArrowTower());
-                    break;
-                case Catapult:
-                    army.add(new Catapult());
-                    break;
-                case RocketLauncherTower:
-                    army.add(new RocketLauncherTower());
-                    break;
-                case Magician:
-                    //army.add(new Magician());
-                    break;
-                case Priest:
-                    System.out.println("Un PRIEST nos vendice con su llegada");
-                    army.add(new Priest());
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + unitType);
-            }
-
-            food -= foodCost;
-            wood -= woodCost;
-            iron -= ironCost;
-            mana -= manaCost;
-            total++;
+    public void newPriest(int n) throws ResourceException, BuildingException {
+        if (church == 0) {
+            throw new BuildingException("You need at least one church to recruit priests.");
         }
-        return total;
-    }
-
-    public int CountUnits(uType unitType) {
-        int result = 0;
-        for (MilitaryUnit unit : army) {
-            if (unit.getType() == unitType) {
-                result++;
-            }
+        int availableUnits = Math.min(wood / PRIEST_WOOD_COST, iron / PRIEST_IRON_COST);
+        int unitsToAdd = Math.min(n, availableUnits);
+        if (unitsToAdd == 0) {
+            throw new ResourceException("Not enough resources to recruit any priests.");
         }
-        return result;
+        // Lógica para añadir unidades de sacerdotes
     }
 
-    public void GenerateResources(float deltaTime) {
-        food += Math.ceil((Variables.CIVILIZATION_FOOD_GENERATED+Variables.CIVILIZATION_FOOD_GENERATED_PER_FARM*farm)/60.0*deltaTime);
-        wood += Math.ceil((Variables.CIVILIZATION_WOOD_GENERATED+Variables.CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY*carpentry)/60.0*deltaTime);
-        iron += Math.ceil((Variables.CIVILIZATION_IRON_GENERATED+Variables.CIVILIZATION_IRON_GENERATED_PER_SMITHY*smithy)/60.0*deltaTime);
-        mana += Math.ceil((Variables.CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER*magicTower)/60.0*deltaTime);
+    public void printStats() {
+        System.out.println("***************************CIVILIZATION STATS***************************");
+        System.out.println("--------------------------------------------------TECHNOLOGY----------------------------------------");
+        System.out.println("Atack\tDefense");
+        System.out.println(technologyAttack + "\t" + technologyDefense);
+        System.out.println("---------------------------------------------------BUILDINGS----------------------------------------");
+        System.out.println("Farm\tSmithy\tCarpentry\tMagic Tower\tChurch");
+        System.out.println(farm + "\t" + smithy + "\t" + carpentry + "\t\t" + magicTower + "\t\t\t" + church);
+        System.out.println("----------------------------------------------------DEFENSES----------------------------------------");
+        System.out.println("Arrow Tower\tCatapult\tRocket Launcher");
+        System.out.println(army[4].size() + "\t\t\t" + army[5].size() + "\t\t" + army[6].size());
+        System.out.println("------------------------------------------------ATTACK UNITS----------------------------------------");
+        System.out.println("Swordsman\tSpearman\tCrossbow\tCannon");
+        System.out.println(army[0].size() + "\t\t\t" + army[1].size() + "\t\t\t" + army[2].size() + "\t\t" + army[3].size());
+        System.out.println("----------------------------------------------ESPECIAL UNITS----------------------------------------");
+        System.out.println("Magician\tPriest");
+        System.out.println(army[7].size() + "\t\t\t" + army[8].size());
+        System.out.println("---------------------------------------------------RESOURCES----------------------------------------");
+        System.out.println("Food\t\tWood\t\tIron\t\tMana");
+        System.out.println(food + "\t\t" + wood + "\t\t" + iron + "\t\t" + mana);
+        System.out.println("----------------------------------------GENERATION RESOURCES----------------------------------------");
+        System.out.println("Food\t\tWood\t\tIron\t\tMana");
+        // Aquí deberías tener atributos que indiquen la generación de recursos, que no están definidos en la pregunta original
+        System.out.println("8000\t\t5000\t\t1500\t\t0");
     }
-
-//Función  de momento no necesaria    private int calculateCost(int level) {
-//        return 100 + (10 * level);
-//    }
-
 }

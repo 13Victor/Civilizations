@@ -78,9 +78,5 @@ public class ArrowTower extends DefenseUnit{
         return experience;
     }
 
-    @Override
-    public uType getType() {
-        return UnitTypes.ArrowTower;
-    }
 
 }

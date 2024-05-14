@@ -78,9 +78,6 @@ public class RocketLauncherTower extends DefenseUnit{
         return experience;
     }
 
-    @Override
-    public UnitTypes getType() {
-        return UnitTypes.ROCKETLAUNCHERTOWER;
-    }
+
 
 }
