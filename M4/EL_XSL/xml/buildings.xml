@@ -37,7 +37,7 @@
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>MAGICTOWER</name>
+		<name>MAGICTOWE</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
