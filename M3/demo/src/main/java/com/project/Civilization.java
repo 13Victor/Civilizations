@@ -263,7 +263,7 @@ public class Civilization implements Variables{
         int manaCost = 0;
 
         if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
-            throw new ResourceException("Not enough resources to build arrow tower");
+            throw new ResourceException("Not enough resources to build arrow tower.");
         }
 
         for (int i = 0; i < n; i++){
@@ -280,7 +280,7 @@ public class Civilization implements Variables{
         int manaCost = 0;
 
         if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
-            throw new ResourceException("Not enough resources to build a catapult");
+            throw new ResourceException("Not enough resources to build a catapult.");
 
         }
 
@@ -298,7 +298,7 @@ public class Civilization implements Variables{
         int manaCost = 0;
 
         if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)){
-            throw new ResourceException("Not enough resources to build a rocket launcher tower");
+            throw new ResourceException("Not enough resources to build a rocket launcher tower.");
         }
 
         for (int i = 0; i < n; i++){
@@ -320,7 +320,7 @@ public class Civilization implements Variables{
         }
         
         if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)){
-            throw new ResourceException("Not enough resources to recruit priest");
+            throw new ResourceException("Not enough resources to recruit priest.");
         }
 
         //for (int i = 0; i < n; i++){
@@ -343,13 +343,85 @@ public class Civilization implements Variables{
         }
 
         if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)){
-            throw new ResourceException("Not enough resources to recruit magician");
+            throw new ResourceException("Not enough resources to recruit magician.");
         }
         
         //for (int i = 0; i < n; i++){
             //army[8].add(new Magician(technologyDefense, technologyAttack));
         //}
         // Lógica para añadir unidades de magos
+    }
+
+    public void newSmithy(int n) throws ResourceException {
+        int foodCost = FOOD_COST_SMITHY * n;
+        int woodCost = WOOD_COST_SMITHY * n;
+        int ironCost = IRON_COST_SMITHY * n;
+        int manaCost = 0;
+
+        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
+            throw new ResourceException("Not enough resources to build a smithy.");
+        }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
+        smithy+= n;
+    }
+
+    public void newCarpentry(int n) throws ResourceException { 
+        int foodCost = FOOD_COST_CARPENTRY * n;
+        int woodCost = WOOD_COST_CARPENTRY * n;
+        int ironCost = IRON_COST_CARPENTRY * n;
+        int manaCost = 0;
+
+        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
+            throw new ResourceException("Not enough resources to build a carpentry.");
+        }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
+        carpentry+= n;
+    }
+
+    public void newFarm(int n) throws ResourceException {
+        int foodCost = FOOD_COST_FARM * n;
+        int woodCost = WOOD_COST_FARM * n;
+        int ironCost = IRON_COST_FARM * n;
+        int manaCost = 0;
+
+        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
+            throw new ResourceException("Not enough resources to build a Farm.");
+        }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
+        farm+= n;
+    }
+
+    public void newMagicTower(int n) throws ResourceException {
+        int foodCost = FOOD_COST_MAGICTOWER * n;
+        int woodCost = WOOD_COST_MAGICTOWER * n;
+        int ironCost = IRON_COST_MAGICTOWER * n;
+        int manaCost = 0;
+
+        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
+            throw new ResourceException("Not enough resources to build a Magic Tower.");
+        }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
+        magicTower+= n;
+    }
+
+
+    public void newChurch(int n) throws ResourceException {
+
+        int foodCost = FOOD_COST_CHURCH * n;
+        int woodCost = WOOD_COST_CHURCH * n;
+        int ironCost = IRON_COST_CHURCH * n;
+        int manaCost = MANA_COST_CHURCH * n;
+
+        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
+            throw new ResourceException("Not enough materials to build a church.");
+        }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
+        church+= n;
     }
 
 
