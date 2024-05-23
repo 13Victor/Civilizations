@@ -304,31 +304,29 @@ public class Civilization implements Variables{
         for (int i = 0; i < n; i++){
             army[6].add(new RocketLauncherTower(technologyDefense, technologyAttack));
         }
-
-        consumeResources(foodCost, woodCost, ironCost, manaCost);
     }
+
 
 
     public void newPriest(int n) throws ResourceException, BuildingException {
         int foodCost = FOOD_COST_PRIEST * n;
-        int woodCost = 0;
-        int ironCost = 0;
+        int woodCost = WOOD_COST_PRIEST * n;
+        int ironCost = IRON_COST_PRIEST * n;
         int manaCost = MANA_COST_PRIEST * n;
-
+    
+        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
+            throw new ResourceException("Not enough resources to recruit priests.");
+        }
+    
         if (church == 0) {
             throw new BuildingException("You need at least one church to recruit priests.");
         }
-        
-        if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)){
-            throw new ResourceException("Not enough resources to recruit priest.");
+    
+        for (int i = 0; i < n; i++) {
+            army[7].add(new Priest(technologyDefense, technologyAttack));
         }
-
-        //for (int i = 0; i < n; i++){
-            //army[7].add(new Priest(technologyDefense, technologyAttack));
-        //}
-
+    
         consumeResources(foodCost, woodCost, ironCost, manaCost);
-
     }
 
     public void newMagician(int n) throws ResourceException, BuildingException {
@@ -346,10 +344,10 @@ public class Civilization implements Variables{
             throw new ResourceException("Not enough resources to recruit magician.");
         }
         
-        //for (int i = 0; i < n; i++){
-            //army[8].add(new Magician(technologyDefense, technologyAttack));
-        //}
-        // Lógica para añadir unidades de magos
+        for (int i = 0; i < n; i++){
+            army[8].add(new Magician(technologyDefense, technologyAttack));
+        }
+        
     }
 
     public void newSmithy(int n) throws ResourceException {

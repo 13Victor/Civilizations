@@ -1,21 +1,20 @@
 package com.project;
 
-
-public class Priest extends Specialunit{
+public class Priest extends Specialunit {
 
     public final int CHANCE_ATTACK_AGAIN_PRIEST = 0;
 
-    public Priest(int initialArmor) {
+    public Priest(int initialArmor, int baseDamage) {
         this.armor = 0;
-        this.initialArmor = this.armor; 
-        this.baseDamage = 0;
+        this.initialArmor = this.armor;
+        this.baseDamage = baseDamage;
         this.experience = 0;
     }
 
     @Override
-    public int attack(){
+    public int attack() {
         int calculatedDamage = 0;
-        return calculatedDamage;  
+        return calculatedDamage;
     }
 
     @Override
@@ -25,36 +24,36 @@ public class Priest extends Specialunit{
 
     @Override
     public int getActualArmor() {
-        return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
+        return (int) (armor + initialArmor * experience * PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT / 100);
     }
 
     @Override
-    public int getFoodCost(){
+    public int getFoodCost() {
         return FOOD_COST_PRIEST;
     }
 
     @Override
-    public int getWoodCost(){
+    public int getWoodCost() {
         return WOOD_COST_PRIEST;
     }
 
     @Override
-    public int getIronCost(){
+    public int getIronCost() {
         return IRON_COST_PRIEST;
     }
 
     @Override
-    public int getManaCost(){
+    public int getManaCost() {
         return MANA_COST_PRIEST;
     }
 
     @Override
-    public int getChanceGeneratinWaste(){
+    public int getChanceGeneratinWaste() {
         return CHANCE_GENERATNG_WASTE_PRIEST;
     }
 
     @Override
-    public int getChanceAttackAgain(){
+    public int getChanceAttackAgain() {
         return CHANCE_ATTACK_AGAIN_PRIEST;
     }
 
@@ -72,7 +71,4 @@ public class Priest extends Specialunit{
     public int getExperience() {
         return experience;
     }
-
-    
-
 }
