@@ -2,7 +2,7 @@
 <root>
 <attack_units>
 	<unit>
-		<name>SWORDSMAN</name>
+		<name>Swordsman</name>
 		<base_damage>80</base_damage>
 		<armour>400</armour>
 		<waste_chance>55</waste_chance>
@@ -21,10 +21,10 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 	<unit>
-		<name>SPEARMAN</name>
+		<name>Spearman</name>
 		<base_damage>150</base_damage>
 		<armour>1000</armour>
 		<waste_chance>65</waste_chance>
@@ -46,7 +46,7 @@
 		<sprite></sprite>
 	</unit>
 	<unit>
-		<name>CROSSBOW</name>
+		<name>Crossbow</name>
 		<base_damage>1000</base_damage>
 		<armour>6000</armour>
 		<waste_chance>80</waste_chance>
@@ -68,7 +68,7 @@
 		<sprite></sprite>
 	</unit>
 	<unit>
-		<name>CANNON</name>
+		<name>Cannon</name>
 		<base_damage>700</base_damage>
 		<armour>8000</armour>
 		<waste_chance>90</waste_chance>
@@ -87,12 +87,12 @@
 			<iron_cost>15000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 </attack_units>
 <buildings>
 	<building>
-		<name>FARM</name>
+		<name>Farm</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
@@ -101,7 +101,7 @@
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>CARPENTRY</name>
+		<name>Carpentry</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
@@ -110,7 +110,7 @@
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>SMITHY</name>
+		<name>Smithy</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
@@ -119,7 +119,7 @@
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>CHURCH</name>
+		<name>Church</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
@@ -128,7 +128,7 @@
 		<sprite></sprite>
 	</building>
 	<building>
-		<name>MAGICTOWE</name>
+		<name>Magictower</name>
 		<costs>
 			<food_cost>5000</food_cost>
 			<iron_cost>10000</iron_cost>
@@ -139,7 +139,7 @@
 </buildings>
 <defence_units>
 	<unit>
-		<name>ARROWTOWER</name>
+		<name>Arrowtower</name>
 		<base_damage>80</base_damage>
 		<armour>200</armour>
 		<waste_chance>55</waste_chance>
@@ -158,10 +158,10 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 	<unit>
-		<name>CATAPULT</name>
+		<name>Catapult</name>
 		<base_damage>250</base_damage>
 		<armour>1200</armour>
 		<waste_chance>65</waste_chance>
@@ -183,7 +183,7 @@
 		<sprite></sprite>
 	</unit>
 	<unit>
-		<name>ROCKETLAUNCHERTOWER</name>
+		<name>Rocket Launcher Tower</name>
 		<base_damage>2000</base_damage>
 		<armour>7000</armour>
 		<waste_chance>75</waste_chance>
@@ -207,7 +207,7 @@
 </defence_units>
 <special_units>
 	<unit>
-		<name>MAGICIAN</name>
+		<name>Magician</name>
 		<base_damage>3000</base_damage>
 		<waste_chance>0</waste_chance>
 		<attack_again_chance>75</attack_again_chance>
@@ -229,7 +229,7 @@
 		<sprite></sprite>
 	</unit>
 	<unit>
-		<name>PRIEST</name>
+		<name>Priest</name>
 		<base_damage>0</base_damage>
 		<waste_chance>0</waste_chance>
 		<attack_again_chance>0</attack_again_chance>
@@ -247,7 +247,7 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>15000</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 </special_units>
 </root>
