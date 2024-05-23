@@ -43,7 +43,7 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 	<unit>
 		<name>Crossbow</name>
@@ -65,7 +65,7 @@
 			<iron_cost>7000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 	<unit>
 		<name>Cannon</name>
@@ -98,7 +98,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</building>
 	<building>
 		<name>Carpentry</name>
@@ -107,7 +107,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</building>
 	<building>
 		<name>Smithy</name>
@@ -116,7 +116,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</building>
 	<building>
 		<name>Church</name>
@@ -125,7 +125,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</building>
 	<building>
 		<name>Magictower</name>
@@ -134,7 +134,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</building>
 </buildings>
 <defence_units>
@@ -180,7 +180,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 	<unit>
 		<name>Rocket Launcher Tower</name>
@@ -202,7 +202,7 @@
 			<iron_cost>5000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 </defence_units>
 <special_units>
@@ -226,7 +226,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>5000</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>../img/swordsman.png</sprite>
 	</unit>
 	<unit>
 		<name>Priest</name>

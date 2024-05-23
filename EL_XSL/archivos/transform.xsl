@@ -10,50 +10,64 @@
                 <link rel="stylesheet" type="text/css" href="../archivos/styles.css"/>
             </head>
             <body>
-                <div class="container">
-                    <div class="left-panel">
-                        <!-- Ataque Units -->
-                        <xsl:for-each select="attack_units/unit">
-                            <div class="card" onclick="showInfo({position()})">
-                                <img src="{sprite}" alt="{name}"/>
+                <div class="cards-container">
+                    <!-- Ataque Units -->
+                    <xsl:for-each select="attack_units/unit">
+                        <div class="flip">
+                            <div class="front">
+                                <img src="{sprite}" alt="{name}" style="filter: drop-shadow(7px 5px 2px rgb(218, 121, 121, 0.6))"/>
                                 <h2><xsl:value-of select="name"/></h2>
-                                <div class="type" style="background:#da7979">Attack Unit</div>
+                                <div class="type" style="background:#da7979;">Attack Unit</div>
                             </div>
-                        </xsl:for-each>
-                        <!-- Defensa Units -->
-                        <xsl:for-each select="defence_units/unit">
-                            <div class="card" onclick="showInfo({position()})">
-                                <img src="{sprite}" alt="{name}"/>
+                            <div class="back">
+                                <h2><xsl:value-of select="name"/></h2>
+                                <p>Additional details about the unit...</p>
+                            </div>
+                        </div>
+                    </xsl:for-each>
+                    <!-- Defensa Units -->
+                    <xsl:for-each select="defence_units/unit">
+                        <div class="flip">
+                            <div class="front">
+                                <img src="{sprite}" alt="{name}" style="filter: drop-shadow(7px 5px 2px rgb(218, 208, 121,0.6))"/>
                                 <h2><xsl:value-of select="name"/></h2>
                                 <div class="type" style="background:#dad079">Defense Unit</div>
                             </div>
-                        </xsl:for-each>
-                        <!-- Especial Units -->
-                        <xsl:for-each select="special_units/unit">
-                            <div class="card" onclick="showInfo({position()})">
-                                <img src="{sprite}" alt="{name}"/>
+                            <div class="back">
+                                <h2><xsl:value-of select="name"/></h2>
+                                <p>Additional details about the unit...</p>
+                            </div>
+                        </div>
+                    </xsl:for-each>
+                    <!-- Especial Units -->
+                    <xsl:for-each select="special_units/unit">
+                        <div class="flip">
+                            <div class="front">
+                                <img src="{sprite}" alt="{name}" style="filter: drop-shadow(7px 5px 2px rgb(121, 182, 218,0.6))"/>
                                 <h2><xsl:value-of select="name"/></h2>
                                 <div class="type" style="background:#79b6da">Special Unit</div>
                             </div>
-                        </xsl:for-each>
-                        <!-- Buildings-->
-                        <xsl:for-each select="buildings/building">
-                            <div class="card" onclick="showInfo({position()})">
-                                <img src="{sprite}" alt="{name}"/>
+                            <div class="back">
+                                <h2><xsl:value-of select="name"/></h2>
+                                <p>Additional details about the unit...</p>
+                            </div>
+                        </div>
+                    </xsl:for-each>
+                    <!-- Buildings -->
+                    <xsl:for-each select="buildings/building">
+                        <div class="flip">
+                            <div class="front">
+                                <img src="{sprite}" alt="{name}" style="filter: drop-shadow(7px 5px 2px rgb(179, 121, 218, 0.6))"/>
                                 <h2><xsl:value-of select="name"/></h2>
                                 <div class="type" style="background:#b379da">Building</div>
                             </div>
-                        </xsl:for-each>
-                    </div>
-                    <div class="right-panel hidden" id="info-panel">
-                        <h2 id="unit-name"></h2>
-                        <p id="unit-damage"></p>
-                        <p id="unit-armour"></p>
-                        <p id="unit-waste-chance"></p>
-                        <p id="unit-attack-again-chance"></p>
-                    </div>
+                            <div class="back">
+                                <h2><xsl:value-of select="name"/></h2>
+                                <p>Additional details about the building...</p>
+                            </div>
+                        </div>
+                    </xsl:for-each>
                 </div>
-                <script src="../archivos/script.js"></script>
             </body>
         </html>
     </xsl:template>
