@@ -192,7 +192,7 @@ public class Civilization implements Variables{
         int foodCost = FOOD_COST_SWORDSMAN * n;
         int woodCost = WOOD_COST_SWORDSMAN * n;
         int ironCost = IRON_COST_SWORDSMAN * n;
-        int manaCost = 0; // Lo ponemso a 0 por que no requiere mana 
+        int manaCost = 0; 
 
         if (!hasEnoughResources(foodCost, woodCost, ironCost, manaCost)) {
             throw new ResourceException("Not enough resources to recruit swordsman.");
