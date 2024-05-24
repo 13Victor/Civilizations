@@ -175,6 +175,7 @@ public class Civilization implements Variables{
         upgradeAttackTechnologyFoodCost += (int) (currentFoodCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
     }
 
+
     private boolean hasEnoughResources(int foodCost, int woodCost, int ironCost, int manaCost) {
         return (food >= foodCost) && (wood >= woodCost) && (iron >= ironCost) && (mana >= manaCost);
     }

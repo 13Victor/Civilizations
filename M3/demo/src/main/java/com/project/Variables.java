@@ -104,6 +104,8 @@ public interface Variables {
     public final int ARMOR_SPEARMAN = 1000;
     public final int ARMOR_CROSSBOW = 6000;
     public final int ARMOR_CANNON = 8000;
+    public final int ARMOR_MAGICIAN = 1;
+    public final int ARMOR_PRIEST = 1;
     // ARMOR DEFENSES
     public final int ARMOR_ARROWTOWER = 200;
     public final int ARMOR_CATAPULT = 1200;
