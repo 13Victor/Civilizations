@@ -43,7 +43,7 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/spearman.png</sprite>
 	</unit>
 	<unit>
 		<name>Crossbow</name>
@@ -65,7 +65,7 @@
 			<iron_cost>7000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/crossbow.png</sprite>
 	</unit>
 	<unit>
 		<name>Cannon</name>
@@ -87,7 +87,7 @@
 			<iron_cost>15000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/cannon.png</sprite>
 	</unit>
 </attack_units>
 <buildings>
@@ -98,7 +98,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/farm.png</sprite>
 	</building>
 	<building>
 		<name>Carpentry</name>
@@ -107,7 +107,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/carpentry.png</sprite>
 	</building>
 	<building>
 		<name>Smithy</name>
@@ -116,7 +116,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/smithy.png</sprite>
 	</building>
 	<building>
 		<name>Church</name>
@@ -125,7 +125,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/church.png</sprite>
 	</building>
 	<building>
 		<name>Magictower</name>
@@ -134,7 +134,7 @@
 			<iron_cost>10000</iron_cost>
 			<wood_cost>12000</wood_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/magic-tower.png</sprite>
 	</building>
 </buildings>
 <defence_units>
@@ -158,7 +158,7 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/arrow-tower.png</sprite>
 	</unit>
 	<unit>
 		<name>Catapult</name>
@@ -180,7 +180,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/catapult.png</sprite>
 	</unit>
 	<unit>
 		<name>Rocket Launcher Tower</name>
@@ -202,7 +202,7 @@
 			<iron_cost>5000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/rocket-launcher.png</sprite>
 	</unit>
 </defence_units>
 <special_units>
@@ -226,7 +226,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>5000</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/magician.png</sprite>
 	</unit>
 	<unit>
 		<name>Priest</name>
@@ -247,7 +247,7 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>15000</mana_cost>
 		</costs>
-		<sprite>../img/swordsman.png</sprite>
+		<sprite>../img/priest.png</sprite>
 	</unit>
 </special_units>
 </root>
