@@ -1,99 +1,77 @@
-package com.project.dao;
+package com.project;
 
-import com.project.magician;
-import com.project.util.DBConnectionUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+public class MagicianDAO {
 
-public class MagicianDao {
+    // Obtener un magician específico por civilization_id y unit_id
+    public static magician getItem(int civilizationId, String unitId) {
+        String sql = String.format("SELECT civilization_id, unit_id, armor, base_damage, experience FROM special_units_stats WHERE civilization_id = %d AND unit_id = '%s'", civilizationId, unitId);
+        AppData db = AppData.getInstance();
+        List<Map<String, Object>> results = db.query(sql);
 
-    // SQL queries
-    private static final String INSERT_MAGIGIAN_SQL = "INSERT INTO special_units_stats (civilization_id, unit_id, type_unit, armor, base_damage, experience) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String SELECT_MAGIGIAN_BY_ID = "SELECT civilization_id, unit_id, type_unit, armor, base_damage, experience FROM special_units_stats WHERE civilization_id = ? AND unit_id = ?";
-    private static final String DELETE_MAGIGIAN_SQL = "DELETE FROM special_units_stats WHERE civilization_id = ? AND unit_id = ?";
-    private static final String UPDATE_MAGIGIAN_SQL = "UPDATE special_units_stats SET armor = ?, base_damage = ?, experience = ? WHERE civilization_id = ? AND unit_id = ?";
+        if (!results.isEmpty()) {
+            Map<String, Object> row = results.get(0);
+            int armor = (int) row.get("armor");
+            int baseDamage = (int) row.get("base_damage");
+            int experience = (int) row.get("experience");
+            magician magician = new magician(armor, baseDamage);
+            magician.setExperience(experience);
+            return magician;
+        }
+        return null;
+    }
 
-    // Insert a new magician
-    public void insertMagician(int civilizationId, String unitId, Magician magician) throws SQLException {
-        try (Connection connection = DBConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MAGIGIAN_SQL)) {
-            preparedStatement.setInt(1, civilizationId);
-            preparedStatement.setString(2, unitId);
-            preparedStatement.setString(3, "Magician");
-            preparedStatement.setInt(4, magician.getActualArmor());
-            preparedStatement.setInt(5, magician.attack());
-            preparedStatement.setInt(6, magician.getExperience());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            printSQLException(e);
+    // Agregar un nuevo magician
+    public static void addItem(int civilizationId, String unitId, magician magician) {
+        String sql = String.format(Locale.US,
+            "INSERT INTO special_units_stats (civilization_id, unit_id, armor, base_damage, experience) VALUES (%d, '%s', %d, %d, %d)",
+            civilizationId, unitId, magician.getActualArmor(), magician.attack(), magician.getExperience()
+        );
+        AppData db = AppData.getInstance();
+        db.update(sql);
+    }
+
+    // Actualizar un magician existente
+    public static void updateItem(int civilizationId, String unitId, magician magician) {
+        String sql = String.format(Locale.US,
+            "UPDATE special_units_stats SET armor = %d, base_damage = %d, experience = %d WHERE civilization_id = %d AND unit_id = '%s'",
+            magician.getActualArmor(), magician.attack(), magician.getExperience(), civilizationId, unitId
+        );
+        AppData db = AppData.getInstance();
+        db.update(sql);
+
+        // Si la armadura es 0 o menos, elimina el magician
+        if (magician.getActualArmor() <= 0) {
+            deleteItem(civilizationId, unitId);
         }
     }
 
-    // Select magician by id
-    public Magician selectMagician(int civilizationId, String unitId) {
-        Magician magician = null;
-        try (Connection connection = DBConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MAGIGIAN_BY_ID)) {
-            preparedStatement.setInt(1, civilizationId);
-            preparedStatement.setString(2, unitId);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                int armor = rs.getInt("armor");
-                int baseDamage = rs.getInt("base_damage");
-                int experience = rs.getInt("experience");
-                magician = new Magician(armor, baseDamage);
-                magician.setExperience(experience);
-            }
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-        return magician;
+    // Eliminar un magician
+    public static void deleteItem(int civilizationId, String unitId) {
+        String sql = String.format("DELETE FROM special_units_stats WHERE civilization_id = %d AND unit_id = '%s'", civilizationId, unitId);
+        AppData db = AppData.getInstance();
+        db.update(sql);
     }
 
-    // Update magician
-    public boolean updateMagician(int civilizationId, String unitId, Magician magician) throws SQLException {
-        boolean rowUpdated;
-        try (Connection connection = DBConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MAGIGIAN_SQL)) {
-            preparedStatement.setInt(1, magician.getActualArmor());
-            preparedStatement.setInt(2, magician.attack());
-            preparedStatement.setInt(3, magician.getExperience());
-            preparedStatement.setInt(4, civilizationId);
-            preparedStatement.setString(5, unitId);
-            rowUpdated = preparedStatement.executeUpdate() > 0;
-        }
-        return rowUpdated;
-    }
+    // Obtener todos los magicians
+    public static ArrayList<magician> getAll() {
+        String sql = "SELECT civilization_id, unit_id, armor, base_damage, experience FROM special_units_stats WHERE type_unit = 'magician'";
+        AppData db = AppData.getInstance();
+        ArrayList<magician> list = new ArrayList<>();
+        List<Map<String, Object>> results = db.query(sql);
 
-    // Delete magician
-    public boolean deleteMagician(int civilizationId, String unitId) throws SQLException {
-        boolean rowDeleted;
-        try (Connection connection = DBConnectionUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_MAGIGIAN_SQL)) {
-            preparedStatement.setInt(1, civilizationId);
-            preparedStatement.setString(2, unitId);
-            rowDeleted = preparedStatement.executeUpdate() > 0;
+        for (Map<String, Object> row : results) {
+            int armor = (int) row.get("armor");
+            int baseDamage = (int) row.get("base_damage");
+            int experience = (int) row.get("experience");
+            magician magician = new magician(armor, baseDamage);
+            magician.setExperience(experience);
+            list.add(magician);
         }
-        return rowDeleted;
-    }
-
-    private void printSQLException(SQLException ex) {
-        for (Throwable e : ex) {
-            if (e instanceof SQLException) {
-                e.printStackTrace(System.err);
-                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
-                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
-                System.err.println("Message: " + e.getMessage());
-                Throwable t = ex.getCause();
-                while (t != null) {
-                    System.out.println("Cause: " + t);
-                    t = t.getCause();
-                }
-            }
-        }
+        return list;
     }
 }
