@@ -305,6 +305,8 @@ public class Civilization implements Variables{
         for (int i = 0; i < n; i++){
             army[6].add(new RocketLauncherTower(technologyDefense, technologyAttack));
         }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
     }
 
 
@@ -348,6 +350,8 @@ public class Civilization implements Variables{
         for (int i = 0; i < n; i++){
             army[8].add(new Magician(technologyDefense, technologyAttack));
         }
+
+        consumeResources(foodCost, woodCost, ironCost, manaCost);
         
     }
 
