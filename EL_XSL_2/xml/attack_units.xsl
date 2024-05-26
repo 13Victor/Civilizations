@@ -10,6 +10,9 @@
                 <link rel="stylesheet" type="text/css" href="css/styles.css"/>
             </head>
             <body>
+                <div class="title tred">
+                    <h1>Attack Units</h1>
+                </div>
                 <div class="cards-container">
                     <!-- Ataque Units -->
                     <xsl:for-each select="unit">

@@ -10,6 +10,9 @@
                 <link rel="stylesheet" type="text/css" href="css/styles.css"/>
             </head>
             <body>
+                <div class="title tyellow">
+                    <h1>Defense Units</h1>
+                </div>
                 <div class="cards-container">
                     <!-- Defensa Units -->
                     <xsl:for-each select="unit">

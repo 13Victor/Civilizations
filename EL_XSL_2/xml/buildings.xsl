@@ -10,6 +10,9 @@
                 <link rel="stylesheet" type="text/css" href="css/styles.css"/>
             </head>
             <body>
+                <div class="title tpurple">
+                    <h1>Buildings</h1>
+                </div>
                 <div class="cards-container" style="padding-left: 300px; padding-right: 300px;">
                     <!-- Buildings -->
                     <xsl:for-each select="building">

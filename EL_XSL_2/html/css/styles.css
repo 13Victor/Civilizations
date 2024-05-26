@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap');
 
 body {
     font-family: "Outfit", sans-serif;
@@ -8,23 +9,52 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    background: #f3f3f3;
+    background: url(../../img/background.png);
 }
 
 img {
     height: 200px;
 }
 
+.title h1 {
+    color: #fff;
+    font-family: "Jim Nightshade";
+    font-size: 4em;
+    margin: 5px;
+    letter-spacing: 5PX;
+}
+
 .title {
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    background: url(../../img/blue.jpg);
-    background-size: contain;
+    width: 1000px;
+    border-radius: 20px;
+
 }
 
+.tblue {
+    background: url(../../img/bg-blue.png);
+    border: 10px solid #395d75;
+}
+
+.tred {
+    background: url(../../img/bg-red.png);
+    border: 10px solid #804141;
+}
+
+.tpurple {
+    background: url(../../img/bg-purple.png);
+    border: 10px solid #624180;
+}
+
+.tyellow {
+    background: url(../../img/bg-yellow.png);
+    border: 10px solid #77652b;
+}
 .cards-container {
+    height: 768px;
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
