@@ -12,7 +12,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-document.body.appendChild(renderer.domElement);
+document.getElementById('app').appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
@@ -30,10 +30,8 @@ controls.minAzimuthAngle = 0.21; // Define el ángulo mínimo en el eje X
 controls.maxAzimuthAngle = 0.6;  // Define el ángulo máximo en el eje X
 
 controls.autoRotate = true;
-controls.autoRotateDirection = -1;
-controls.autoRotateSpeed = 0.1;
-
-
+controls.autoRotateDirection = 1;
+controls.autoRotateSpeed = 0.05;
 
 
 
