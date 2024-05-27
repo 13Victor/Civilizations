@@ -33,10 +33,10 @@ public class CivilizationMenu extends JFrame {
         gbc.fill = GridBagConstraints.NONE;
 
         // Creación de los botones con fondo personalizado
-        JButton playButton = createButton("PLAY", "path_to_play_button_background.png");
-        JButton loadGameButton = createButton("LOAD GAME", "path_to_load_game_button_background.png");
-        JButton creditsButton = createButton("CREDITS", "path_to_credits_button_background.png");
-        JButton quitButton = createButton("QUIT", "path_to_quit_button_background.png");
+        JButton playButton = createButton("PLAY", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\wood-button.png");
+        JButton loadGameButton = createButton("LOAD GAME", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\wood-button.png");
+        JButton creditsButton = createButton("CREDITS", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\wood-button.png");
+        JButton quitButton = createButton("QUIT", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\wood-button.png");
 
         // Agregar botones al panel de botones
         gbc.gridy = 0;
