@@ -18,9 +18,20 @@ public class Battle {
     private int[] actualNumberUnitsCivilization;
     private int[] actualNumberUnitsEnemy;
     private Random random;
+    private int numBattle;
+    private int woodAcquired;
+    private int ironAcquired;
+    private boolean win;
+    private ArrayList<Integer> civilizationLoses;
+    private ArrayList<Integer> enemyLoses;
+    private ArrayList<MilitaryUnit> civilizationArmy;
+    private ArrayList<MilitaryUnit> enemyArmy;
+    private String detailedReport;
 
     @SuppressWarnings("unchecked")
-    public Battle(ArrayList<MilitaryUnit>[] civilizationArmy, ArrayList<MilitaryUnit>[] enemyArmy) {
+    public Battle(ArrayList<MilitaryUnit> civilizationArmy, ArrayList<MilitaryUnit> enemyArmy) {
+        this.civilizationArmy = civilizationArmy;
+        this.enemyArmy = enemyArmy;
         this.armies = new ArrayList[2];
         this.armies[0] = civilizationArmy;
         this.armies[1] = enemyArmy;
@@ -32,6 +43,8 @@ public class Battle {
         this.actualNumberUnitsCivilization = new int[9];
         this.actualNumberUnitsEnemy = new int[9];
         this.random = new Random();
+        this.civilizationLoses = new ArrayList<>();
+        this.enemyLoses = new ArrayList<>();
         initInitialArmies();
         updateResourcesLooses();
     }
@@ -60,7 +73,7 @@ public class Battle {
         }
     }
 
-    public String getBattleReport(int battles) {
+    public String getBattleReport() {
         return "Resumen de la batalla";
     }
 
@@ -132,5 +145,79 @@ public class Battle {
 
     private void determineBattleOutcome() {
         // Determina el resultado de la batalla
+        // Actualiza woodAcquired, ironAcquired, win, civilizationLoses, enemyLoses, detailedReport
+    }
+
+    // Getters and setters for new fields
+    public int getNumBattle() {
+        return numBattle;
+    }
+
+    public void setNumBattle(int numBattle) {
+        this.numBattle = numBattle;
+    }
+
+    public int getWoodAcquired() {
+        return woodAcquired;
+    }
+
+    public void setWoodAcquired(int woodAcquired) {
+        this.woodAcquired = woodAcquired;
+    }
+
+    public int getIronAcquired() {
+        return ironAcquired;
+    }
+
+    public void setIronAcquired(int ironAcquired) {
+        this.ironAcquired = ironAcquired;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
+
+    public ArrayList<Integer> getCivilizationLoses() {
+        return civilizationLoses;
+    }
+
+    public void setCivilizationLoses(ArrayList<Integer> civilizationLoses) {
+        this.civilizationLoses = civilizationLoses;
+    }
+
+    public ArrayList<Integer> getEnemyLoses() {
+        return enemyLoses;
+    }
+
+    public void setEnemyLoses(ArrayList<Integer> enemyLoses) {
+        this.enemyLoses = enemyLoses;
+    }
+
+    public ArrayList<MilitaryUnit> getCivilizationArmy() {
+        return civilizationArmy;
+    }
+
+    public void setCivilizationArmy(ArrayList<MilitaryUnit> civilizationArmy) {
+        this.civilizationArmy = civilizationArmy;
+    }
+
+    public ArrayList<MilitaryUnit> getEnemyArmy() {
+        return enemyArmy;
+    }
+
+    public void setEnemyArmy(ArrayList<MilitaryUnit> enemyArmy) {
+        this.enemyArmy = enemyArmy;
+    }
+
+    public String getDetailedReport() {
+        return detailedReport;
+    }
+
+    public void setDetailedReport(String detailedReport) {
+        this.detailedReport = detailedReport;
     }
 }
