@@ -2,11 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Poppins;
+    font-family: "Outfit", sans-serif;
 }
 
 body {
@@ -40,14 +41,30 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.information {
+    margin-top: 30px;
+    background: #442a11;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    color:#dbc7b0;
+    width: 1200px;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 1.2em;
+    text-align: justify;
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
 }
 
 .home-container{
     width: 100%;
-    margin-top: 70px;
+    padding-top: 30px;
     align-items: center;
-    height: 400px;
+    height: 380px;
     gap: 50px;
     justify-content: center;
     display: flex;
@@ -55,20 +72,19 @@ body {
 }
 .profile-card{
     position: relative;
-    width: 300px;
-    border: #222 5px solid;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     background: url(../public/img/img/bg-white.png);
-    padding: 30px;
+    padding: 25px;
     border-radius: 50%;
     box-shadow: -5px 8px 45px rgba(51, 51, 51, 0.126);
     transition: all .4s;
     margin: 0 20px;
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.5);
 }
 .profile-card:hover{
     border-radius: 10px;
-    height: 340px;
+    height: 280px;
 }
 .profile-card .img{
     position: relative;
@@ -80,7 +96,7 @@ body {
     transform: translateY(-70px);
 }
 .img img{
-    border: #444 5px solid;
+    border: #222 5px solid;
     object-fit: fill;
     width: 100%;
     border-radius: 50%;
@@ -119,3 +135,4 @@ body {
 .caption .social-links i:hover{
     color: #000;
 }
+
