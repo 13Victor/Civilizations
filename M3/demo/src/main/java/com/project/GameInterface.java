@@ -1,4 +1,5 @@
-package com.project;  
+package com.project;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -38,13 +39,13 @@ public class GameInterface extends JFrame {
         panel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
 
         // Agregar los componentes
-        panel.add(createUnitPanel("Swordsman", "500000", "180000", "3150", "0", "path_to_swordsman_icon.png"));
-        panel.add(createUnitPanel("Spearman", "50000", "65000", "50", "0", "path_to_spearman_icon.png"));
-        panel.add(createUnitPanel("Crossbow", "0", "45000", "7000", "0", "path_to_crossbow_icon.png"));
-        panel.add(createUnitPanel("Cannon", "0", "30000", "15000", "0", "path_to_cannon_icon.png"));
+        panel.add(createUnitPanel("Swordsman", "500000", "180000", "3150", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\swordsman.png"));
+        panel.add(createUnitPanel("Spearman", "50000", "65000", "50", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\spearman.png"));
+        panel.add(createUnitPanel("Crossbow", "0", "45000", "7000", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\crossbow.png"));
+        panel.add(createUnitPanel("Cannon", "0", "30000", "15000", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\cannon.png"));
 
         // Crear un JLabel con el fondo
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
+        JLabel background = new JLabel(new ImageIcon("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\backgroundpersonajes.png")); // Reemplaza con la ruta a la imagen de fondo
         background.setLayout(new BorderLayout());
         background.add(panel, BorderLayout.CENTER);
 
@@ -61,12 +62,12 @@ public class GameInterface extends JFrame {
         panel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
 
         // Agregar los componentes
-        panel.add(createUnitPanel("Arrow Tower", "0", "400000", "0", "0", "path_to_arrow_tower_icon.png"));
-        panel.add(createUnitPanel("Catapult", "0", "40000", "500", "0", "path_to_catapult_icon.png"));
-        panel.add(createUnitPanel("Rocket Launcher Tower", "0", "50000", "10000", "0", "path_to_rocket_launcher_tower_icon.png"));
+        panel.add(createUnitPanel("Arrow Tower", "0", "400000", "0", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\arrow-tower.png"));
+        panel.add(createUnitPanel("Catapult", "0", "40000", "500", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\catapult.png"));
+        panel.add(createUnitPanel("Rocket Launcher Tower", "0", "50000", "10000", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\rocket-launcher.png"));
 
         // Crear un JLabel con el fondo
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
+        JLabel background = new JLabel(new ImageIcon("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\backgroundpersonajes.png")); // Reemplaza con la ruta a la imagen de fondo
         background.setLayout(new BorderLayout());
         background.add(panel, BorderLayout.CENTER);
 
@@ -83,14 +84,14 @@ public class GameInterface extends JFrame {
         panel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
 
         // Agregar los componentes
-        panel.add(createUnitPanel("Farm", "0", "20000", "0", "0", "path_to_farm_icon.png"));
-        panel.add(createUnitPanel("Church", "0", "30000", "0", "0", "path_to_church_icon.png"));
-        panel.add(createUnitPanel("Magic Tower", "0", "50000", "0", "0", "path_to_magic_tower_icon.png"));
-        panel.add(createUnitPanel("Smithy", "0", "25000", "0", "0", "path_to_smithy_icon.png"));
-        panel.add(createUnitPanel("Carpentry", "0", "15000", "0", "0", "path_to_carpentry_icon.png"));
+        panel.add(createUnitPanel("Farm", "0", "20000", "0", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\farm.png"));
+        panel.add(createUnitPanel("Church", "0", "30000", "0", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\church-.png"));
+        panel.add(createUnitPanel("Magic Tower", "0", "50000", "0", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\magic-tower.png"));
+        panel.add(createUnitPanel("Smithy", "0", "25000", "0", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\smithy.png"));
+        panel.add(createUnitPanel("Carpentry", "0", "15000", "0", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\carpentry.png"));
 
         // Crear un JLabel con el fondo
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
+        JLabel background = new JLabel(new ImageIcon("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\backgroundpersonajes.png")); // Reemplaza con la ruta a la imagen de fondo
         background.setLayout(new BorderLayout());
         background.add(panel, BorderLayout.CENTER);
 
@@ -107,11 +108,11 @@ public class GameInterface extends JFrame {
         panel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
 
         // Agregar los componentes
-        panel.add(createUnitPanel("Magician", "300000", "150000", "1000", "500", "path_to_magician_icon.png"));
-        panel.add(createUnitPanel("Priest", "200000", "100000", "500", "300", "path_to_priest_icon.png"));
+        panel.add(createUnitPanel("Magician", "300000", "150000", "1000", "500", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\magician.png"));
+        panel.add(createUnitPanel("Priest", "200000", "100000", "500", "300", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\priest.png"));
 
         // Crear un JLabel con el fondo
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
+        JLabel background = new JLabel(new ImageIcon("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\backgroundpersonajes.png")); // Reemplaza con la ruta a la imagen de fondo
         background.setLayout(new BorderLayout());
         background.add(panel, BorderLayout.CENTER);
 
@@ -123,8 +124,9 @@ public class GameInterface extends JFrame {
     }
 
     private JPanel createUnitPanel(String unitName, String food, String wood, String iron, String mana, String iconPath) {
-        // Crear un JPanel con un BorderLayout
-        JPanel unitPanel = new JPanel(new BorderLayout());
+        // Crear un JPanel con un BoxLayout
+        JPanel unitPanel = new JPanel();
+        unitPanel.setLayout(new BoxLayout(unitPanel, BoxLayout.Y_AXIS));
         unitPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         unitPanel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
 
@@ -140,9 +142,15 @@ public class GameInterface extends JFrame {
             JOptionPane.showMessageDialog(this, unitName + " units to create: " + count);
         });
 
+        // Alinear los componentes horizontalmente centrados
+        iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        resourcesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        unitCountField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        createButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // Agregar los componentes al unitPanel
-        unitPanel.add(iconLabel, BorderLayout.WEST);
-        unitPanel.add(resourcesLabel, BorderLayout.CENTER);
+        unitPanel.add(iconLabel);
+        unitPanel.add(resourcesLabel);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
@@ -150,7 +158,7 @@ public class GameInterface extends JFrame {
         bottomPanel.add(unitCountField);
         bottomPanel.add(createButton);
 
-        unitPanel.add(bottomPanel, BorderLayout.SOUTH);
+        unitPanel.add(bottomPanel);
 
         return unitPanel;
     }

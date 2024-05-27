@@ -29,13 +29,14 @@ public class CivilizationMenu extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
         gbc.weightx = 1.0;
-        gbc.anchor = GridBagConstraints.EAST;
+        gbc.anchor = GridBagConstraints.CENTER; // Centrar los botones horizontalmente
+        gbc.fill = GridBagConstraints.NONE;
 
-        // Creación de los botones
-        JButton playButton = createButton("PLAY");
-        JButton loadGameButton = createButton("LOAD GAME");
-        JButton creditsButton = createButton("CREDITS");
-        JButton quitButton = createButton("QUIT");
+        // Creación de los botones con fondo personalizado
+        JButton playButton = createButton("PLAY", "path_to_play_button_background.png");
+        JButton loadGameButton = createButton("LOAD GAME", "path_to_load_game_button_background.png");
+        JButton creditsButton = createButton("CREDITS", "path_to_credits_button_background.png");
+        JButton quitButton = createButton("QUIT", "path_to_quit_button_background.png");
 
         // Agregar botones al panel de botones
         gbc.gridy = 0;
@@ -65,10 +66,25 @@ public class CivilizationMenu extends JFrame {
         });
     }
 
-    private JButton createButton(String text) {
+    private JButton createButton(String text, String backgroundImagePath) {
         JButton button = new JButton(text);
         button.setFont(new Font("Arial", Font.BOLD, 18));
         button.setPreferredSize(new Dimension(200, 50));
+
+        try {
+            Image img = ImageIO.read(new File(backgroundImagePath));
+            button.setIcon(new ImageIcon(img));
+        } catch (IOException e) {
+            System.err.println("Error: No se pudo cargar la imagen de fondo para el botón " + text);
+            e.printStackTrace();
+        }
+
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+        button.setVerticalTextPosition(SwingConstants.CENTER);
+        button.setContentAreaFilled(false);
+        button.setOpaque(false);
+        button.setBorderPainted(false);
+
         return button;
     }
 
@@ -78,7 +94,7 @@ public class CivilizationMenu extends JFrame {
         public BackgroundPanel() {
             try {
                 // Cargar la imagen de fondo
-                backgroundImage = ImageIO.read(new File("path/to/your/background-image.jpg"));
+                backgroundImage = ImageIO.read(new File("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\civilizations_main_page.png"));
             } catch (IOException e) {
                 System.err.println("Error: No se pudo cargar la imagen de fondo.");
                 e.printStackTrace();

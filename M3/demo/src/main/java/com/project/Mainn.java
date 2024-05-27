@@ -1,8 +1,6 @@
 package com.project;
 
 import java.util.*;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 public class Mainn {
@@ -19,6 +17,7 @@ public class Mainn {
             simulateBattle();
         }
     };
+
 
     private TimerTask taskResources = new TimerTask() {
         public void run() {
@@ -68,37 +67,38 @@ public class Mainn {
     }
 
     public void crearUnidades() {
-        limpiarPantalla();
-        System.out.println("Creando Unidades...");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("1. Espadachín");
-        System.out.println("2. Lancero");
-        System.out.println("3. Ballestero");
-        System.out.println("4. Cañón");
-        System.out.print("\nSelecciona una opción: ");
-        int opcion = scanner.nextInt();
+    limpiarPantalla();
+    System.out.println("Creando Unidades...");
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("1. Espadachín");
+    System.out.println("2. Lancero");
+    System.out.println("3. Ballestero");
+    System.out.println("4. Cañón");
+    System.out.print("\nSelecciona una opción: ");
+    int opcion = scanner.nextInt();
 
-        try {
-            switch (opcion) {
-                case 1:
-                    civilization.addUnit(new Unidad("Swordsman"));
-                    break;
-                case 2:
-                    civilization.addUnit(new Unidad("Spearman"));
-                    break;
-                case 3:
-                    civilization.addUnit(new Unidad("Crossbow"));
-                    break;
-                case 4:
-                    civilization.addUnit(new Unidad("Cannon"));
-                    break;
-                default:
-                    System.out.println("Opción no válida");
-            }
-        } catch (ResourceException e) {
-            System.out.println("No se pudo crear la unidad: " + e.getMessage());
+    try {
+        switch (opcion) {
+            case 1:
+                civilization.newSwordsman(1);
+                break;
+            case 2:
+                civilization.newSpearman(1);
+                break;
+            case 3:
+                civilization.newCrossbow(1);
+                break;
+            case 4:
+                civilization.newCannon(1);
+                break;
+            default:
+                System.out.println("Opción no válida");
         }
+    } catch (ResourceException e) {
+        System.out.println("No se pudo crear la unidad: " + e.getMessage());
     }
+}
+
 
     public void crearEdificios() {
         Scanner scanner = new Scanner(System.in);
@@ -161,7 +161,7 @@ public class Mainn {
     public void increaseResources() {
         civilization.setWood(civilization.getWood() + 5);
         civilization.setFood(civilization.getFood() + 20);
-        System.out.println("Recursos incrementados: " + civilization.getResources());
+        System.out.println("Recursos incrementados: " + civilization.getresources());
     }
 
     public void createEnemyArmy() {
@@ -173,10 +173,10 @@ public class Mainn {
             if (prob < 35 && civilization.getWood() >= 10) {
                 enemyArmy.add(new Unidad("Swordsman"));
                 civilization.setWood(civilization.getWood() - 10);
-            } else if (prob < 60 && civilization.getWood() >= 15) {
+            } else if (prob < 25 && civilization.getWood() >= 15) {
                 enemyArmy.add(new Unidad("Spearman"));
                 civilization.setWood(civilization.getWood() - 15);
-            } else if (prob < 80 && civilization.getWood() >= 20) {
+            } else if (prob < 20 && civilization.getWood() >= 20) {
                 enemyArmy.add(new Unidad("Crossbow"));
                 civilization.setWood(civilization.getWood() - 20);
             } else if (civilization.getWood() >= 30) {
