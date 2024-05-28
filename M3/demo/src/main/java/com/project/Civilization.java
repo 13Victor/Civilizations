@@ -1,19 +1,22 @@
 package com.project;
+
 import java.util.ArrayList;
+import java.util.List;
 
-
-
-public class Civilization implements Variables{
+public class Civilization implements Variables {
     private static final double UPGRADE_TECH_COST_INCREASE_PERCENTAGE = 0.10;
     private int upgradeDefenseTechnologyIronCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST;
     private int upgradeAttackTechnologyIronCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST;
     private int upgradeDefenseTechnologyWoodCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST;
     private int upgradeAttackTechnologyWoodCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST;
     private int upgradeDefenseTechnologyFoodCost = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST;
-    private int upgradeAttackTechnologyFoodCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST;
-
-    private int technologyDefense;
-    private int technologyAttack;
+    private int upgradeAttackTechnologyFoodCost = UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST; 
+    
+    
+    
+    
+    private int savedId;
+    private String name;
     private int wood;
     private int iron;
     private int food;
@@ -23,32 +26,37 @@ public class Civilization implements Variables{
     private int farm;
     private int smithy;
     private int carpentry;
+    private int technologyDefense;
+    private int technologyAttack;
     private int battles;
-    private ArrayList<MilitaryUnit>[] army;
+    private List<MilitaryUnit> ownArmy;
+    private List<SpecialUnit> specialUnits;
+    private List<DefenseUnit> defenseUnits;
+    private List<MilitaryUnit>[] army;
 
     @SuppressWarnings("unchecked")
     public Civilization() {
-        army = new ArrayList[9];
-        for (int i = 0; i < 9; i++) {
-            army[i] = new ArrayList<MilitaryUnit>();
-        }
+        ownArmy = new ArrayList<>();
+        specialUnits = new ArrayList<>();
+        defenseUnits = new ArrayList<>();
     }
 
+    // Getters y Setters para todas las propiedades
 
-    public int getTechnologyDefense() {
-        return technologyDefense;
+    public int getSavedId() {
+        return savedId;
     }
 
-    public void setTechnologyDefense(int technologyDefense) {
-        this.technologyDefense = technologyDefense;
+    public void setSavedId(int savedId) {
+        this.savedId = savedId;
     }
 
-    public int getTechnologyAttack() {
-        return technologyAttack;
+    public String getName() {
+        return name;
     }
 
-    public void setTechnologyAttack(int technologyAttack) {
-        this.technologyAttack = technologyAttack;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getWood() {
@@ -123,6 +131,22 @@ public class Civilization implements Variables{
         this.carpentry = carpentry;
     }
 
+    public int getTechnologyDefense() {
+        return technologyDefense;
+    }
+
+    public void setTechnologyDefense(int technologyDefense) {
+        this.technologyDefense = technologyDefense;
+    }
+
+    public int getTechnologyAttack() {
+        return technologyAttack;
+    }
+
+    public void setTechnologyAttack(int technologyAttack) {
+        this.technologyAttack = technologyAttack;
+    }
+
     public int getBattles() {
         return battles;
     }
@@ -131,14 +155,32 @@ public class Civilization implements Variables{
         this.battles = battles;
     }
 
-    public ArrayList<MilitaryUnit>[] getArmy() {
-        return army;
+    public List<MilitaryUnit> getOwnArmy() {
+        return ownArmy;
     }
 
-    public void setArmy(ArrayList<MilitaryUnit>[] army) {
-        this.army = army;
+    public void setOwnArmy(List<MilitaryUnit> ownArmy) {
+        this.ownArmy = ownArmy;
     }
 
+    public List<SpecialUnit> getSpecialUnits() {
+        return specialUnits;
+    }
+
+    public void setSpecialUnits(List<SpecialUnit> specialUnits) {
+        this.specialUnits = specialUnits;
+    }
+
+    public List<DefenseUnit> getDefenseUnits() {
+        return defenseUnits;
+    }
+
+    public void setDefenseUnits(List<DefenseUnit> defenseUnits) {
+        this.defenseUnits = defenseUnits;
+    }
+
+    // Métodos existentes de Civilization
+    // ...
     public void upgradeTechnologyDefense() throws ResourceException {
         int currentIronCost = upgradeDefenseTechnologyIronCost;
         int currentWoodCost = upgradeDefenseTechnologyWoodCost;
@@ -175,7 +217,6 @@ public class Civilization implements Variables{
         upgradeAttackTechnologyFoodCost += (int) (currentFoodCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
     }
 
-
     private boolean hasEnoughResources(int foodCost, int woodCost, int ironCost, int manaCost) {
         return (food >= foodCost) && (wood >= woodCost) && (iron >= ironCost) && (mana >= manaCost);
     }
@@ -186,8 +227,6 @@ public class Civilization implements Variables{
         iron -= ironCost;
         mana -= manaCost;
     }
-
-
 
     public void newSwordsman(int n) throws ResourceException {
         int foodCost = FOOD_COST_SWORDSMAN * n;
@@ -308,8 +347,6 @@ public class Civilization implements Variables{
 
         consumeResources(foodCost, woodCost, ironCost, manaCost);
     }
-
-
 
     public void newPriest(int n) throws ResourceException, BuildingException {
         int foodCost = FOOD_COST_PRIEST * n;

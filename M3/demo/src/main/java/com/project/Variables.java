@@ -115,6 +115,8 @@ public interface Variables {
     public final int PLUS_ARMOR_SPEARMAN_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_CANNON_BY_TECHNOLOGY = 5;
+    public final int PLUS_ARMOR_PRIEST_BY_TECHNOLOGY = 0;
+    public final int PLUS_ARMOR_MAGICIAN_BY_TECHNOLOGY = 0;
     // defense armor increase percentage per tech level
     public final int PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY = 5;
     public final int PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY = 5;
@@ -124,6 +126,7 @@ public interface Variables {
     public final int PLUS_ATTACK_SPEARMAN_BY_TECHNOLOGY = 5;
     public final int PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY = 5;
     public final int PLUS_ATTACK_CANNON_BY_TECHNOLOGY = 5;
+    public final int PLUS_ATTACK_PRIEST_BY_TECHNOLOGY = 5;
     // Defense attack power increase percentage per tech level
     public final int PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY = 5;
     public final int PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY = 5;

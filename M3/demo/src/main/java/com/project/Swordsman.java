@@ -1,34 +1,25 @@
 package com.project;
 
-public class Swordsman extends AttackUnit{
-  
-    private final static int ARMOR_SWORDSMAN = 400;
-    private final static int BASE_DAMAGE_SWORDSMAN = 80;
+public class Swordsman extends AttackUnit {
+    private static final int ARMOR_SWORDSMAN = 400;
+    private static final int BASE_DAMAGE_SWORDSMAN = 80;
 
-    
-    public Swordsman(int technologyDefenseLevel, int technologyAttackLevel){
-        this.armor = ARMOR_SWORDSMAN + (int)(technologyDefenseLevel*PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY)*ARMOR_SWORDSMAN/100;
+    public Swordsman(int technologyDefenseLevel, int technologyAttackLevel) {
+        this.armor = ARMOR_SWORDSMAN + (int)(technologyDefenseLevel * PLUS_ARMOR_SWORDSMAN_BY_TECHNOLOGY) * ARMOR_SWORDSMAN / 100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SWORDSMAN + (int)(technologyAttackLevel*PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY)*BASE_DAMAGE_SWORDSMAN/100;
+        this.baseDamage = BASE_DAMAGE_SWORDSMAN + (int)(technologyAttackLevel * PLUS_ATTACK_SWORDSMAN_BY_TECHNOLOGY) * BASE_DAMAGE_SWORDSMAN / 100;
         this.experience = 0;
         this.sanctified = false;
-    }
-
-    public Swordsman(){
-        this.armor = ARMOR_SWORDSMAN;
-        this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_SWORDSMAN;
-        this.experience = 0;
-        this.sanctified = false;
+        this.unitID = generateUnitID();
     }
 
     @Override
-    public int attack(){
+    public int attack() {
         int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
-        if (sanctified){
-            calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED /100;
+        if (sanctified) {
+            calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
         }
-        return calculatedDamage;  
+        return calculatedDamage;
     }
 
     @Override
@@ -38,36 +29,36 @@ public class Swordsman extends AttackUnit{
 
     @Override
     public int getActualArmor() {
-        return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
+        return (int)(armor + initialArmor * experience * PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT / 100);
     }
 
     @Override
-    public int getFoodCost(){
+    public int getFoodCost() {
         return FOOD_COST_SWORDSMAN;
     }
 
     @Override
-    public int getWoodCost(){
+    public int getWoodCost() {
         return WOOD_COST_SWORDSMAN;
     }
 
     @Override
-    public int getIronCost(){
+    public int getIronCost() {
         return IRON_COST_SWORDSMAN;
     }
 
     @Override
-    public int getManaCost(){
+    public int getManaCost() {
         return MANA_COST_SWORDSMAN;
     }
 
     @Override
-    public int getChanceGeneratinWaste(){
+    public int getChanceGeneratingWaste() {
         return CHANCE_GENERATNG_WASTE_SWORDSMAN;
     }
 
     @Override
-    public int getChanceAttackAgain(){
+    public int getChanceAttackAgain() {
         return CHANCE_ATTACK_AGAIN_SWORDSMAN;
     }
 
@@ -77,8 +68,8 @@ public class Swordsman extends AttackUnit{
     }
 
     @Override
-    public void setExperience(int exp) {
-        experience = exp;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     @Override
@@ -86,5 +77,7 @@ public class Swordsman extends AttackUnit{
         return experience;
     }
 
-
+    private String generateUnitID() {
+        return "SWD" + System.currentTimeMillis();
+    }
 }
