@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BattleInterface extends JFrame {
 
@@ -11,25 +13,37 @@ public class BattleInterface extends JFrame {
     private JLabel woodLabel;
     private JLabel ironLabel;
     private JLabel manaLabel;
+    private JTextArea battleLogArea;
 
     private int food = 0;
     private int wood = 0;
     private int iron = 0;
     private int mana = 0;
 
+    private List<Unit> civilizationUnits;
+    private List<Unit> enemyUnits;
+    private StringBuilder battleLog;
+
     public BattleInterface() {
-        // Configuración de la ventana principal
+
         setTitle("La Batalla Comienza");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLayout(new BorderLayout());
 
-        // Panel de materiales a la derecha con fondo personalizado
-        JPanel materialsPanel = new MaterialsPanel("C:\\ruta\\a\\tu\\C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\maderafondo.png");
+        civilizationUnits = new ArrayList<>();
+        enemyUnits = new ArrayList<>();
+        battleLog = new StringBuilder();
+
+        // Example units, you can add your own logic to initialize these
+        civilizationUnits.add(new Unit("Swordsman", 100));
+        civilizationUnits.add(new Unit("Spearman", 150));
+        enemyUnits.add(new Unit("Cannon", 200));
+
+        JPanel materialsPanel = new JPanel();
         materialsPanel.setLayout(new BoxLayout(materialsPanel, BoxLayout.Y_AXIS));
         materialsPanel.setBorder(BorderFactory.createTitledBorder("Materiales"));
 
-        // Crear paneles para cada material con su imagen y etiqueta
         JPanel foodPanel = createMaterialPanel("Comida", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\steak.png", foodLabel = new JLabel("0"));
         JPanel woodPanel = createMaterialPanel("Madera", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\wood.png", woodLabel = new JLabel("0"));
         JPanel ironPanel = createMaterialPanel("Hierro", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\iron.png", ironLabel = new JLabel("0"));
@@ -40,7 +54,6 @@ public class BattleInterface extends JFrame {
         materialsPanel.add(ironPanel);
         materialsPanel.add(manaPanel);
 
-        // Panel de botones debajo de los materiales
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(3, 1, 5, 5));
 
@@ -52,27 +65,41 @@ public class BattleInterface extends JFrame {
         buttonsPanel.add(statsButton);
         buttonsPanel.add(sanctifyButton);
 
-        // Añadir el panel de botones al panel de materiales
         materialsPanel.add(buttonsPanel);
 
-        // Panel del campo de batalla a la izquierda con fondo
         JPanel battleFieldPanel = new BattleFieldPanel("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\campo_de_batalla_v2.png");
         battleFieldPanel.setBorder(BorderFactory.createTitledBorder("Campo de Batalla"));
 
-        // Añadir los paneles a la ventana principal
         add(materialsPanel, BorderLayout.EAST);
         add(battleFieldPanel, BorderLayout.CENTER);
 
+        // Add action listener to the upgrade button
+        upgradeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GameInterface();
+            }
+        });
+
         // Timer para actualizar los materiales cada segundo (1000 ms)
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer materialTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 incrementMaterials();
             }
         });
-        timer.start();
+        materialTimer.start();
 
-        // Hacer visible la ventana
+        // Timer para mostrar el popup cada tres minutos (180000 ms)
+        Timer popupTimer = new Timer(10000000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                simulateBattle();
+                showPopup();
+            }
+        });
+        popupTimer.start();
+
         setVisible(true);
     }
 
@@ -91,9 +118,9 @@ public class BattleInterface extends JFrame {
     }
 
     private void incrementMaterials() {
-        food += 100; // Incrementa comida en 100
-        wood += 50; // Incrementa madera en 50
-        iron += 30; // Incrementa hierro en 30
+        food += 10; // Incrementa comida en 10
+        wood += 5; // Incrementa madera en 5
+        iron += 3; // Incrementa hierro en 3
         mana += 2; // Incrementa mana en 2
 
         foodLabel.setText(String.valueOf(food));
@@ -102,7 +129,60 @@ public class BattleInterface extends JFrame {
         manaLabel.setText(String.valueOf(mana));
     }
 
-    // Clase personalizada para el panel del campo de batalla con fondo
+    private void showPopup() {
+        JDialog popup = new JDialog(this, "Battle Log", false);
+        popup.setSize(400, 300);
+        popup.setLocation(0, 0);
+
+        JTextArea textArea = new JTextArea(15, 30);
+        textArea.setEditable(false);
+        textArea.setText(battleLog.toString());
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        JButton closeButton = new JButton("Cerrar");
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                popup.dispose();
+            }
+        });
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(closeButton, BorderLayout.SOUTH);
+
+        popup.add(panel);
+        popup.setVisible(true);
+    }
+
+    private void simulateBattle() {
+        battleLog.setLength(0); // Reset battle log
+
+        for (Unit enemy : enemyUnits) {
+            if (!civilizationUnits.isEmpty()) {
+                Unit defender = civilizationUnits.get(0);
+                battleLog.append(String.format("Enemy Unit: %s will attack...\n", enemy.getName()));
+                battleLog.append(String.format("Civilization Unit: %s will defend...\n", defender.getName()));
+                int damage = enemy.getAttackPower();
+                battleLog.append(String.format("%s generates the damage = %d\n", enemy.getName(), damage));
+                defender.setHealth(defender.getHealth() - damage);
+                battleLog.append(String.format("%s stays with = %d\n", defender.getName(), defender.getHealth()));
+
+                if (defender.getHealth() <= 0) {
+                    battleLog.append(String.format("%s of Civilization is dead\n", defender.getName()));
+                    civilizationUnits.remove(defender);
+                }
+                battleLog.append("Extra turn Enemy.\n\n");
+            }
+        }
+
+        if (civilizationUnits.isEmpty()) {
+            battleLog.append("End of the battle\n");
+            battleLog.append("Enemy WIN !!\n");
+        }
+    }
+
     private class BattleFieldPanel extends JPanel {
         private Image backgroundImage;
         private final int margin = 20;
@@ -126,27 +206,35 @@ public class BattleInterface extends JFrame {
         }
     }
 
-    // Clase personalizada para el panel de materiales con fondo
-    private class MaterialsPanel extends JPanel {
-        private Image backgroundImage;
-        private final int margin = 20;
+    private class Unit {
+        private String name;
+        private int health;
+        private int attackPower;
 
-        public MaterialsPanel(String imagePath) {
-            try {
-                backgroundImage = new ImageIcon(imagePath).getImage();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        public Unit(String name, int health) {
+            this.name = name;
+            this.health = health;
+            this.attackPower = 100; // Default attack power
         }
 
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            if (backgroundImage != null) {
-                int imgWidth = getWidth() - 2 * margin;
-                int imgHeight = getHeight() - 2 * margin;
-                g.drawImage(backgroundImage, margin, margin, imgWidth, imgHeight, this);
-            }
+        public String getName() {
+            return name;
+        }
+
+        public int getHealth() {
+            return health;
+        }
+
+        public void setHealth(int health) {
+            this.health = health;
+        }
+
+        public int getAttackPower() {
+            return attackPower;
+        }
+
+        public void setAttackPower(int attackPower) {
+            this.attackPower = attackPower;
         }
     }
 

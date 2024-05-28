@@ -8,7 +8,7 @@ public class GameInterface extends JFrame {
         // Configurar la ventana principal
         setTitle("Upgrade Technology");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Crear un JTabbedPane
