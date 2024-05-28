@@ -11,6 +11,14 @@ public class Magician extends SpecialUnit {
         this.experience = 0;
         this.unitID = generateUnitID();
     }
+    public Magician() {
+        this.armor = ARMOR_MAGICIAN;
+        this.initialArmor = this.armor;
+        this.baseDamage = BASE_DAMAGE_MAGICIAN;
+        this.experience = 0;
+        this.sanctified = false;
+        this.unitID = generateUnitID();
+    }
 
     @Override
     public int attack() {

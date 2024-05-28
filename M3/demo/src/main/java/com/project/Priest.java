@@ -12,6 +12,15 @@ public class Priest extends SpecialUnit {
         this.unitID = generateUnitID();
     }
 
+    public Priest() {
+        this.armor = ARMOR_PRIEST;
+        this.initialArmor = this.armor;
+        this.baseDamage = BASE_DAMAGE_PRIEST;
+        this.experience = 0;
+        this.sanctified = false;
+        this.unitID = generateUnitID();
+    }
+
     @Override
     public int attack() {
         int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
