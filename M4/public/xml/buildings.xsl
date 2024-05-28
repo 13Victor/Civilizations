@@ -10,6 +10,38 @@
                 <link rel="stylesheet" type="text/css" href="../../css/wiki_units.css"/>
             </head>
             <body>
+                <ul id="navbar">
+                    <li class="li_navbar">
+                        <a href="../../../index.html">
+                            <img src="../../resources/img/Goblin_House.png"></img>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="li_navbar">
+                        <a href="../tutorial.html">
+                            <img src="../../resources/img/scroll.png"></img>
+                            <span>Tutorial</span>
+                        </a>
+                    </li>	
+                    <li class="li_navbar">
+                        <a href="../wiki.html">
+                          <img src="../../resources/img/book.png"></img>
+                          <span>Wiki</span>
+                        </a>
+                    </li>
+                    <li class="li_navbar">
+                        <a href="../aboutUs.html">
+                            <img src="../../resources/img/bag.png"></img>
+                            <span>About Us</span>
+                        </a>
+                    </li>	
+                    <li class="li_navbar">
+                      <a href="#">
+                        <img src="../../resources/img/campfire.png"></img>
+                        <span>Contact Us</span>
+                      </a>
+                  </li>
+                </ul>
                 <div class="title tpurple">
                     <h1>Buildings</h1>
                 </div>

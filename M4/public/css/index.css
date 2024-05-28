@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
 
 body {
@@ -26,6 +27,7 @@ body {
 	transform: translateY(-50%);
 	left: 0;
 	margin-left: 10px;
+  margin-top: 0;
 	background: url(../resources/img/4c.jpg);
 	display: flex;
 	flex-direction: column;
@@ -367,14 +369,14 @@ body {
 /* TIMELINE */
 
 #timeline {
-  --color: rgb(0, 0, 0);
-  --bgColor: #ececec;
+  --color: #e2dbd5;
+  --bgColor: #55473d;
   min-height: 100vh;
   display: grid;
   align-content: center;
   gap: 2rem;
   padding: 2rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "Outfit", sans-serif;
   color: var(--color);
 }
 
@@ -398,6 +400,14 @@ body {
   margin: 0;
   font-size: 2rem;
 }
+.title {
+  font-size: 1.3rem;
+}
+
+.descr {
+  font-size: 1.1rem;
+}
+
 
 .ul_timeline {
   --col-gap: 2rem;
@@ -417,7 +427,7 @@ body {
   content: "";
   grid-column: 1;
   grid-row: 1 / span 20;
-  background: #ffae00;
+  background: #d3ccc1;
   border-radius: calc(var(--line-w) / 2);
 }
 
@@ -447,7 +457,7 @@ body {
   text-align: center;
   background-color: var(--accent-color);
 
-  color: #ececec;
+  color: #000000;
   font-size: 1.25rem;
   font-weight: 700;
 
@@ -498,7 +508,7 @@ body {
   overflow: hidden;
   padding-block-start: 1.5rem;
   padding-block-end: 1rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 .ul_timeline .li_timeline .descr {
   border-end-start-radius: 20px;
