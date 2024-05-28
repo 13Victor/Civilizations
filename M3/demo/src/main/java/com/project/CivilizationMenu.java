@@ -18,7 +18,7 @@ public class CivilizationMenu extends JFrame {
         setLocationRelativeTo(null);
 
         // Configuración del JPanel con fondo personalizado
-        JPanel backgroundPanel = new BackgroundPanel();
+        JPanel backgroundPanel = new BackgroundPanel("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\civilizations_main_page.png");
         backgroundPanel.setLayout(new BorderLayout());
 
         // Panel para los botones
@@ -57,6 +57,22 @@ public class CivilizationMenu extends JFrame {
         // Agregar el panel al frame
         add(backgroundPanel);
 
+        // Acción para el botón de PLAY
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new LoginWindow();
+            }
+        });
+
+        // Acción para el botón de CREDITS
+        creditsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CreditsWindow();
+            }
+        });
+
         // Acción para el botón de salida
         quitButton.addActionListener(new ActionListener() {
             @Override
@@ -91,10 +107,10 @@ public class CivilizationMenu extends JFrame {
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
-        public BackgroundPanel() {
+        public BackgroundPanel(String imagePath) {
             try {
                 // Cargar la imagen de fondo
-                backgroundImage = ImageIO.read(new File("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\civilizations_main_page.png"));
+                backgroundImage = ImageIO.read(new File(imagePath));
             } catch (IOException e) {
                 System.err.println("Error: No se pudo cargar la imagen de fondo.");
                 e.printStackTrace();
@@ -108,6 +124,85 @@ public class CivilizationMenu extends JFrame {
             if (backgroundImage != null) {
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
+        }
+    }
+
+    class LoginWindow extends JFrame {
+        public LoginWindow() {
+            setTitle("Login");
+            setSize(400, 300);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setLocationRelativeTo(null);
+
+            JPanel loginPanel = new BackgroundPanel("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\login.png");
+            loginPanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+
+            JLabel nameLabel = new JLabel("Nombre:");
+            nameLabel.setForeground(Color.WHITE); // Cambiar el color del texto a blanco
+            loginPanel.add(nameLabel, gbc);
+
+            gbc.gridx = 1;
+            JTextField nameField = new JTextField(15);
+            loginPanel.add(nameField, gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.gridwidth = 2;
+            gbc.anchor = GridBagConstraints.CENTER;
+            JButton enterButton = new JButton("Entrar al campo de batalla");
+            loginPanel.add(enterButton, gbc);
+
+            add(loginPanel);
+
+            enterButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String playerName = nameField.getText();
+                    // Aquí puedes agregar el código para manejar el nombre del jugador
+                    System.out.println("Jugador: " + playerName);
+                    dispose(); // Cierra la ventana de login
+                }
+            });
+
+            setVisible(true);
+        }
+    }
+
+    class CreditsWindow extends JFrame {
+        public CreditsWindow() {
+            setTitle("Créditos");
+            setSize(400, 300);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setLocationRelativeTo(null);
+
+            JPanel creditsPanel = new BackgroundPanel("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\fondocreditos.png");
+            creditsPanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(10, 10, 10, 10);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+
+            JLabel creditsLabel = new JLabel("<html><center>Desarrollado por:<br>Daniel Hirich<br>Marc Cachinero<br>Victor Valero</center></html>", SwingConstants.CENTER);
+            creditsLabel.setForeground(Color.WHITE); // Cambiar el color del texto a blanco
+            creditsPanel.add(creditsLabel, gbc);
+
+            gbc.gridy = 1;
+            JButton closeButton = new JButton("Cerrar");
+            closeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose(); // Cierra la ventana de créditos
+                }
+            });
+            creditsPanel.add(closeButton, gbc);
+
+            add(creditsPanel);
+
+            setVisible(true);
         }
     }
 
