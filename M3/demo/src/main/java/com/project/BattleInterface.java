@@ -2,8 +2,6 @@ package com.project;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,38 +64,11 @@ public class BattleInterface extends JFrame {
 
         materialsPanel.add(buttonsPanel);
 
-        JPanel battleFieldPanel = new BattleFieldPanel("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\campo_de_batalla_v2.png");
+        JPanel battleFieldPanel = new BattleFieldPanel("/com/project/fotos/campo_de_batalla_v2.png");
         battleFieldPanel.setBorder(BorderFactory.createTitledBorder("Campo de Batalla"));
 
         add(materialsPanel, BorderLayout.EAST);
         add(battleFieldPanel, BorderLayout.CENTER);
-
-        // Add action listener to the upgrade button
-        upgradeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new GameInterface();
-            }
-        });
-
-        // Timer para actualizar los materiales cada segundo (1000 ms)
-        Timer materialTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                incrementMaterials();
-            }
-        });
-        materialTimer.start();
-
-        // Timer para mostrar el popup cada tres minutos (180000 ms)
-        Timer popupTimer = new Timer(180000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simulateBattle();
-                showPopup();
-            }
-        });
-        popupTimer.start();
 
         setVisible(true);
     }
@@ -114,72 +85,6 @@ public class BattleInterface extends JFrame {
         panel.add(valueLabel);
 
         return panel;
-    }
-
-    private void incrementMaterials() {
-        food += 10; // Incrementa comida en 10
-        wood += 5; // Incrementa madera en 5
-        iron += 3; // Incrementa hierro en 3
-        mana += 2; // Incrementa mana en 2
-
-        foodLabel.setText(String.valueOf(food));
-        woodLabel.setText(String.valueOf(wood));
-        ironLabel.setText(String.valueOf(iron));
-        manaLabel.setText(String.valueOf(mana));
-    }
-
-    private void showPopup() {
-        JDialog popup = new JDialog(this, "Battle Log", false);
-        popup.setSize(400, 300);
-        popup.setLocation(0, 0);
-
-        JTextArea textArea = new JTextArea(15, 30);
-        textArea.setEditable(false);
-        textArea.setText(battleLog.toString());
-
-        JScrollPane scrollPane = new JScrollPane(textArea);
-
-        JButton closeButton = new JButton("Cerrar");
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popup.dispose();
-            }
-        });
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(scrollPane, BorderLayout.CENTER);
-        panel.add(closeButton, BorderLayout.SOUTH);
-
-        popup.add(panel);
-        popup.setVisible(true);
-    }
-
-    private void simulateBattle() {
-        battleLog.setLength(0); // Reset battle log
-
-        for (MilitaryUnit enemy : enemyUnits) {
-            if (!civilizationUnits.isEmpty()) {
-                MilitaryUnit defender = civilizationUnits.get(0);
-                battleLog.append(String.format("Enemy Unit: %s will attack...\n", enemy.getClass().getSimpleName()));
-                battleLog.append(String.format("Civilization Unit: %s will defend...\n", defender.getClass().getSimpleName()));
-                int damage = enemy.attack();
-                battleLog.append(String.format("%s generates the damage = %d\n", enemy.getClass().getSimpleName(), damage));
-                defender.takeDamage(damage);
-                battleLog.append(String.format("%s stays with = %d armor\n", defender.getClass().getSimpleName(), defender.getArmor()));
-
-                if (defender.getArmor() <= 0) {
-                    battleLog.append(String.format("%s of Civilization is dead\n", defender.getClass().getSimpleName()));
-                    civilizationUnits.remove(defender);
-                }
-                battleLog.append("Extra turn Enemy.\n\n");
-            }
-        }
-
-        if (civilizationUnits.isEmpty()) {
-            battleLog.append("End of the battle\n");
-            battleLog.append("Enemy WIN !!\n");
-        }
     }
 
     private class BattleFieldPanel extends JPanel {

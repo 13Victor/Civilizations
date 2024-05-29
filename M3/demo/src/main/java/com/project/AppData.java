@@ -25,8 +25,8 @@ public class AppData {
 
     private void connect() {
         String url = "jdbc:oracle:thin:@//localhost:1521/XEPDB1"; // Cambia esto según tu configuración
-        String user = "your_username"; // Cambia esto según tu configuración
-        String password = "your_password"; // Cambia esto según tu configuración
+        String user = "oracle"; // Cambia esto según tu configuración
+        String password = "oracle"; // Cambia esto según tu configuración
         try {
             // Cargar el driver de Oracle
             Class.forName("oracle.jdbc.driver.OracleDriver");
