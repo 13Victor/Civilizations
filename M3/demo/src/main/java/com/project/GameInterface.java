@@ -39,11 +39,11 @@ public class GameInterface extends JFrame {
         panel.setOpaque(false); // Hacer que el panel sea transparente para ver el fondo
 
         // Agregar los componentes
-        panel.add(createUnitPanel("Swordsman", "500000", "180000", "3150", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\swordsman.png"));
-        panel.add(createUnitPanel("Spearman", "50000", "65000", "50", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\spearman.png"));
-        panel.add(createUnitPanel("Crossbow", "0", "45000", "7000", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\crossbow.png"));
-        panel.add(createUnitPanel("Cannon", "0", "30000", "15000", "0", "C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\cannon.png"));
 
+        panel.add(createUnitPanel("Swordsman", "8000", "3000", "50", "0", "C:\\\\Users\\\\marcc\\\\OneDrive\\\\Documentos\\\\GitHub\\\\Civilizations\\\\M3\\\\demo\\\\src\\\\main\\\\java\\\\com\\\\project\\\\fotos\\\\swordsman.png"));
+        panel.add(createUnitPanel("Spearman", "5000", "6500", "50", "0", "C:\\\\Users\\\\marcc\\\\OneDrive\\\\Documentos\\\\GitHub\\\\Civilizations\\\\M3\\\\demo\\\\src\\\\main\\\\java\\\\com\\\\project\\\\fotos\\\\spearman.png"));
+        panel.add(createUnitPanel("Crossbow", "0", "45000", "7000", "0", "C:\\\\Users\\\\marcc\\\\OneDrive\\\\Documentos\\\\GitHub\\\\Civilizations\\\\M3\\\\demo\\\\src\\\\main\\\\java\\\\com\\\\project\\\\fotos\\\\crossbow.png"));
+        panel.add(createUnitPanel("Cannon", "0", "30000", "15000", "0", "C:\\\\Users\\\\marcc\\\\OneDrive\\\\Documentos\\\\GitHub\\\\Civilizations\\\\M3\\\\demo\\\\src\\\\main\\\\java\\\\com\\\\project\\\\fotos\\\\cannon.png"));
         // Crear un JLabel con el fondo
         JLabel background = new JLabel(new ImageIcon("C:\\Users\\marcc\\OneDrive\\Documentos\\GitHub\\Civilizations\\M3\\demo\\src\\main\\java\\com\\project\\fotos\\backgroundpersonajes.png")); // Reemplaza con la ruta a la imagen de fondo
         background.setLayout(new BorderLayout());
