@@ -1,4 +1,5 @@
-package com.project;  
+package com.project;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -6,7 +7,7 @@ public class GameInterface extends JFrame {
     public GameInterface() {
         setTitle("Upgrade Technology");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -28,88 +29,73 @@ public class GameInterface extends JFrame {
 
     private JPanel createAttackUnitPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
-        panel.setOpaque(false); 
+        panel.setOpaque(false);
 
-        panel.add(createUnitPanel("Swordsman", "8000", "3000", "50", "0", "path_to_swordsman_icon.png"));
-        panel.add(createUnitPanel("Spearman", "5000", "6500", "50", "0", "path_to_spearman_icon.png"));
-        panel.add(createUnitPanel("Crossbow", "0", "45000", "7000", "0", "path_to_crossbow_icon.png"));
-        panel.add(createUnitPanel("Cannon", "0", "30000", "15000", "0", "path_to_cannon_icon.png"));
+        panel.add(createUnitPanel("Swordsman", "8000", "3000", "50", "0", "/com/project/fotos/swordsman.png"));
+        panel.add(createUnitPanel("Spearman", "5000", "6500", "50", "0", "/com/project/fotos/spearman.png"));
+        panel.add(createUnitPanel("Crossbow", "0", "45000", "7000", "0", "/com/project/fotos/crossbow.png"));
+        panel.add(createUnitPanel("Cannon", "0", "30000", "15000", "0", "/com/project/fotos/cannon.png"));
 
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
-        background.setLayout(new BorderLayout());
-        background.add(panel, BorderLayout.CENTER);
-
-        JPanel backgroundPanel = new JPanel(new BorderLayout());
-        backgroundPanel.add(background, BorderLayout.CENTER);
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/com/project/fotos/backgroundpersonajes.png");
+        backgroundPanel.setLayout(new BorderLayout());
+        backgroundPanel.add(panel, BorderLayout.CENTER);
 
         return backgroundPanel;
     }
 
     private JPanel createDefenceUnitPanel() {
-        JPanel panel = new JPanel(new GridLayout(1, 3, 10, 10));
-        panel.setOpaque(false); 
+        JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
+        panel.setOpaque(false);
 
-        panel.add(createUnitPanel("Arrow Tower", "0", "2000", "0", "0", "path_to_arrow_tower_icon.png"));
-        panel.add(createUnitPanel("Catapult", "0", "4000", "500", "0", "path_to_catapult_icon.png"));
-        panel.add(createUnitPanel("Rocket Launcher Tower", "0", "50000", "5000", "0", "path_to_rocket_launcher_tower_icon.png"));
+        panel.add(createUnitPanel("Arrow Tower", "0", "2000", "0", "0", "/com/project/fotos/arrow-tower.png"));
+        panel.add(createUnitPanel("Catapult", "0", "4000", "500", "0", "/com/project/fotos/catapult.png"));
+        panel.add(createUnitPanel("Rocket Launcher Tower", "0", "50000", "5000", "0", "/com/project/fotos/rocket-launcher.png"));
 
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
-        background.setLayout(new BorderLayout());
-        background.add(panel, BorderLayout.CENTER);
-
-        JPanel backgroundPanel = new JPanel(new BorderLayout());
-        backgroundPanel.add(background, BorderLayout.CENTER);
-
-
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/com/project/fotos/backgroundpersonajes.png");
+        backgroundPanel.setLayout(new BorderLayout());
+        backgroundPanel.add(panel, BorderLayout.CENTER);
 
         return backgroundPanel;
     }
 
     private JPanel createBuildingsPanel() {
         JPanel panel = new JPanel(new GridLayout(2, 3, 10, 10));
-        panel.setOpaque(false); 
+        panel.setOpaque(false);
 
-        panel.add(createUnitPanel("Farm", "5000", "10000", "12000", "0", "path_to_farm_icon.png"));
-        panel.add(createUnitPanel("Church", "10000", "20000", "24000", "10000", "path_to_church_icon.png"));
-        panel.add(createUnitPanel("Magic Tower", "10000", "20000", "24000", "0", "path_to_magic_tower_icon.png"));
-        panel.add(createUnitPanel("Smithy", "5000", "10000", "12000", "0", "path_to_smithy_icon.png"));
-        panel.add(createUnitPanel("Carpentry", "5000", "10000", "12000", "0", "path_to_carpentry_icon.png"));
-        
+        panel.add(createUnitPanel("Farm", "5000", "10000", "12000", "0", "/com/project/fotos/farm.png"));
+        panel.add(createUnitPanel("Church", "10000", "20000", "24000", "10000", "/com/project/fotos/church-.png"));
+        panel.add(createUnitPanel("Magic Tower", "10000", "20000", "24000", "0", "/com/project/fotos/magic-tower.png"));
+        panel.add(createUnitPanel("Smithy", "5000", "10000", "12000", "0", "/com/project/fotos/smithy.png"));
+        panel.add(createUnitPanel("Carpentry", "5000", "10000", "12000", "0", "/com/project/fotos/carpentry.png"));
 
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
-        background.setLayout(new BorderLayout());
-        background.add(panel, BorderLayout.CENTER);
-
-        JPanel backgroundPanel = new JPanel(new BorderLayout());
-        backgroundPanel.add(background, BorderLayout.CENTER);
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/com/project/fotos/backgroundpersonajes.png");
+        backgroundPanel.setLayout(new BorderLayout());
+        backgroundPanel.add(panel, BorderLayout.CENTER);
 
         return backgroundPanel;
     }
 
     private JPanel createSpecialUnitPanel() {
         JPanel panel = new JPanel(new GridLayout(1, 2, 10, 10));
-        panel.setOpaque(false); 
+        panel.setOpaque(false);
 
-        panel.add(createUnitPanel("Magician", "300000", "150000", "1000", "500", "path_to_magician_icon.png"));
-        panel.add(createUnitPanel("Priest", "200000", "100000", "500", "300", "path_to_priest_icon.png"));
+        panel.add(createUnitPanel("Magician", "300000", "150000", "1000", "500", "/com/project/fotos/magician.png"));
+        panel.add(createUnitPanel("Priest", "200000", "100000", "500", "300", "/com/project/fotos/priest.png"));
 
-        JLabel background = new JLabel(new ImageIcon("path_to_background_image.jpg")); // Reemplaza con la ruta a la imagen de fondo
-        background.setLayout(new BorderLayout());
-        background.add(panel, BorderLayout.CENTER);
-
-        JPanel backgroundPanel = new JPanel(new BorderLayout());
-        backgroundPanel.add(background, BorderLayout.CENTER);
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/com/project/fotos/backgroundpersonajes.png");
+        backgroundPanel.setLayout(new BorderLayout());
+        backgroundPanel.add(panel, BorderLayout.CENTER);
 
         return backgroundPanel;
     }
 
     private JPanel createUnitPanel(String unitName, String food, String wood, String iron, String mana, String iconPath) {
         JPanel unitPanel = new JPanel(new BorderLayout());
-        unitPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        unitPanel.setOpaque(false); 
+        unitPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 30, 10));
+        unitPanel.setOpaque(false);
 
         // Crear los componentes
-        JLabel iconLabel = new JLabel(new ImageIcon(iconPath)); // Reemplaza con la ruta al icono correspondiente
+        JLabel iconLabel = new JLabel(loadImage(iconPath));
         JLabel resourcesLabel = new JLabel(String.format("Food: %s Wood: %s Iron: %s Mana: %s", food, wood, iron, mana));
         JTextField unitCountField = new JTextField("1", 5);
         JButton createButton = new JButton("Create");
@@ -131,6 +117,16 @@ public class GameInterface extends JFrame {
         unitPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         return unitPanel;
+    }
+
+    private ImageIcon loadImage(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 
     public static void main(String[] args) {

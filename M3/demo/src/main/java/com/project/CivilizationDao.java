@@ -21,6 +21,19 @@ public class CivilizationDao {
         return titleCase.toString();
     }
 
+
+    public void insertUnit(String unitName) {
+        String sql = "INSERT INTO units (type) VALUES (?)";
+
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, unitName);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addSave(Civilization save) {
         Connection con = AppData.getInstance().getConnection();
         String insertCivilizationSql = "INSERT INTO civilization_stats (name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defense_level, technology_attack_level, battles_counter) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -279,6 +292,19 @@ public class CivilizationDao {
                 return new RocketLauncherTower();
             default:
                 throw new IllegalArgumentException("Unknown defense unit type: " + type);
+        }
+    }
+
+    // Añadimos el nuevo método para insertar un jugador
+    public void insertPlayer(String playerName) {
+        String sql = "INSERT INTO players (name) VALUES (?)";
+
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, playerName);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
