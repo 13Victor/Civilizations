@@ -179,6 +179,27 @@ public class Civilization implements Variables {
         this.defenseUnits = defenseUnits;
     }
 
+    public String getStats() {
+        StringBuilder stats = new StringBuilder();
+        stats.append("Civilization Stats:\n");
+        stats.append("Food: ").append(food).append("\n");
+        stats.append("Wood: ").append(wood).append("\n");
+        stats.append("Iron: ").append(iron).append("\n");
+        stats.append("Mana: ").append(mana).append("\n");
+        stats.append("Technology Defense Level: ").append(technologyDefense).append("\n");
+        stats.append("Technology Attack Level: ").append(technologyAttack).append("\n");
+        stats.append("Army Size: ").append(getTotalArmySize()).append("\n");
+        return stats.toString();
+    }
+
+    private int getTotalArmySize() {
+        int total = 0;
+        for (List<MilitaryUnit> units : army) {
+            total += units.size();
+        }
+        return total;
+    }
+
     // Métodos existentes de Civilization
     // ...
     public void upgradeTechnologyDefense() throws ResourceException {
