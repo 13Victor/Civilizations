@@ -170,7 +170,7 @@ Detalles sobre la lógica de programación, lenguajes utilizados, y estructura d
 
 | Personaje 1                  | Personaje 2                  | Personaje 3                  | Personaje 4                  |
 |------------------------------|------------------------------|------------------------------|------------------------------|
-| ![Personaje 1](readmeImg/spearman.png) | ![Personaje 2](readmeImg/magician.png) | ![Personaje 3](readmeImg/swordsman.png) | ![Personaje 4](readmeImg/smithy.png)(readmeimagenes/personaje4.png) |
+| ![Personaje 1](readmeImg/spearman.png) | ![Personaje 2](readmeImg/magician.png) | ![Personaje 3](readmeImg/swordsman.png) | ![Personaje 4](readmeImg/smithy.png)|
 
 ### Breve Explicación del Proyecto "Civilizations"
 
