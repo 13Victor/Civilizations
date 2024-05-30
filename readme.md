@@ -180,4 +180,7 @@ El proyecto "Civilizations" es una aplicación que simula el desarrollo y la int
 
 El objetivo principal del proyecto es proporcionar una experiencia de aprendizaje interactiva sobre la historia y el desarrollo de las civilizaciones, permitiendo a los usuarios comprender mejor cómo las decisiones estratégicas afectan el crecimiento y el éxito a largo plazo.
 
+#web
+![Web](readmeImg/captura_web.png)
+
 
