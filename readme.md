@@ -28,7 +28,7 @@ Incluir diagramas UML que describen la estructura y el diseño del sistema.
 
 ## Base de Datos
 
-Descripción de la estructura de la base de datos, esquemas, y cómo se gestionan los datos. Puedes incluir diagramas ER y scripts SQL.
+Descripción de la estructura de la base de datos, esquemas, y cómo se gestionan los datos.
 
 ```sql
 CREATE TABLE civilization_stats
@@ -161,4 +161,23 @@ BEGIN
     SELECT civilization_seq.NEXTVAL INTO :NEW.civilization_id FROM dual;
   END IF;
 END;
+
+## Programación
+
+Detalles sobre la lógica de programación, lenguajes utilizados, y estructura del código. Proporciona ejemplos de código y explica la arquitectura del software.
+
+### Tabla de Personajes
+
+| Personaje 1                  | Personaje 2                  | Personaje 3                  | Personaje 4                  |
+|------------------------------|------------------------------|------------------------------|------------------------------|
+| ![Personaje 1](readmeImg/spearman.png) | ![Personaje 2](readmeImg/magician.png) | ![Personaje 3](readmeImg/swordsman.png) | ![Personaje 4](readmeImg/smithy.png)(readmeimagenes/personaje4.png) |
+
+### Breve Explicación del Proyecto "Civilizations"
+
+El proyecto "Civilizations" es una aplicación que simula el desarrollo y la interacción de diferentes civilizaciones a lo largo del tiempo. Incluye funcionalidades como la gestión de recursos, la expansión territorial, y la evolución tecnológica. Los jugadores pueden controlar y desarrollar su propia civilización mientras interactúan con otras en un entorno dinámico y competitivo.
+
+![Civilizations](readmeimagenes/civilizations.png)
+
+El objetivo principal del proyecto es proporcionar una experiencia de aprendizaje interactiva sobre la historia y el desarrollo de las civilizaciones, permitiendo a los usuarios comprender mejor cómo las decisiones estratégicas afectan el crecimiento y el éxito a largo plazo.
+
 
