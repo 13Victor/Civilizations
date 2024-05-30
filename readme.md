@@ -176,7 +176,7 @@ Detalles sobre la lógica de programación, lenguajes utilizados, y estructura d
 
 El proyecto "Civilizations" es una aplicación que simula el desarrollo y la interacción de diferentes civilizaciones a lo largo del tiempo. Incluye funcionalidades como la gestión de recursos, la expansión territorial, y la evolución tecnológica. Los jugadores pueden controlar y desarrollar su propia civilización mientras interactúan con otras en un entorno dinámico y competitivo.
 
-![Civilizations](readmeimagenes/civilizations.png)
+![Civilizations](readmeimagenes/2.png)
 
 El objetivo principal del proyecto es proporcionar una experiencia de aprendizaje interactiva sobre la historia y el desarrollo de las civilizaciones, permitiendo a los usuarios comprender mejor cómo las decisiones estratégicas afectan el crecimiento y el éxito a largo plazo.
 
