@@ -24,7 +24,7 @@ Una breve descripción del proyecto, explicando su propósito y objetivos princi
 
 Incluir diagramas UML que describen la estructura y el diseño del sistema. Puedes añadir imágenes o enlaces a los diagramas UML.
 
-![Diagrama de clases](readmeImg/imgae.png)
+![Diagrama de clases](readmeImg/image.png)
 
 ## Base de Datos
 
