@@ -161,7 +161,7 @@ BEGIN
     SELECT civilization_seq.NEXTVAL INTO :NEW.civilization_id FROM dual;
   END IF;
 END;
-
+```
 ## Programación
 
 Detalles sobre la lógica de programación, lenguajes utilizados, y estructura del código. Proporciona ejemplos de código y explica la arquitectura del software.
