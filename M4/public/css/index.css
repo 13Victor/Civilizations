@@ -248,7 +248,7 @@ body {
 
 .grid-item-2 {
   grid-area: box2;
-  background: url(../resources/gifs/c1.gif);
+  background: url(../resources/img/vista_2.png);
   background-size:cover;
 }
 
@@ -260,7 +260,7 @@ body {
 
 .grid-item-4 {
   grid-area: box4;
-  background: url(../resources/gifs/h1.gif);
+  background: url(../resources/img/vista_4.png);
   background-size:cover;
 }
 
@@ -278,7 +278,7 @@ body {
 
 .grid-item-7 {
   grid-area: box7;
-  background: url(../resources/gifs/c3.gif);
+  background: url(../resources/img/vista_1.png);
   background-size:cover;
 }
 
@@ -308,7 +308,7 @@ body {
 
 .grid-item-12 {
   grid-area: box12;
-  background: url(../resources/gifs/h5\,c3_v2.gif);
+  background: url(../resources/img/vista_3.png);
   background-size:cover;
 }
 

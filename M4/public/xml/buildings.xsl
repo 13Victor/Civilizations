@@ -36,7 +36,7 @@
                         </a>
                     </li>	
                     <li class="li_navbar">
-                      <a href="#">
+                      <a href="mailto:bebesjefazos@civilizations.com">
                         <img src="../../resources/img/campfire.png"></img>
                         <span>Contact Us</span>
                       </a>
