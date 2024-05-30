@@ -8,12 +8,7 @@ Una breve descripción del proyecto, explicando su propósito y objetivos princi
 - [Base de Datos](#base-de-datos)
 - [Programación](#programación)
 - [Web](#web)
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Características](#características)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
-- [Créditos](#créditos)
+
 
 ## UML
 
@@ -30,3 +25,4 @@ CREATE TABLE ejemplo (
     id INT PRIMARY KEY,
     nombre VARCHAR(100)
 );
+
