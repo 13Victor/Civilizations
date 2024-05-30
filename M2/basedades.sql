@@ -106,3 +106,25 @@ CREATE TABLE battle_log (
     CONSTRAINT pk_battle_log PRIMARY KEY (civilization_id, num_battle, num_line),
     FOREIGN KEY (civilization_id, num_battle) REFERENCES battle_stats(civilization_id, num_battle)
 );
+
+CREATE TABLE enemy_units_stats (
+    civilization_id NUMBER(10) NOT NULL,
+    unit_id VARCHAR2(50) NOT NULL,
+    type_unit VARCHAR2(50),
+    armor NUMBER(10),
+    base_damage NUMBER(10),
+    experience NUMBER(10),
+    sanctified VARCHAR2(3),
+    PRIMARY KEY (civilization_id, unit_id)
+);
+
+CREATE SEQUENCE civilization_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER civilization_before_insert
+BEFORE INSERT ON civilization_stats
+FOR EACH ROW
+BEGIN
+  IF :NEW.civilization_id IS NULL THEN
+    SELECT civilization_seq.NEXTVAL INTO :NEW.civilization_id FROM dual;
+  END IF;
+END;
