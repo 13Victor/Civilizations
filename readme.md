@@ -1,9 +1,13 @@
-  # Nombre del Proyecto
+# Nombre del Proyecto
 
 Una breve descripción del proyecto, explicando su propósito y objetivos principales.
 
 ## Tabla de Contenidos
 
+- [UML](#uml)
+- [Base de Datos](#base-de-datos)
+- [Programación](#programación)
+- [Web](#web)
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Características](#características)
@@ -11,16 +15,18 @@ Una breve descripción del proyecto, explicando su propósito y objetivos princi
 - [Licencia](#licencia)
 - [Créditos](#créditos)
 
-## Instalación
+## UML
 
-Instrucciones para configurar y ejecutar el proyecto en una máquina local. Incluye los requisitos previos y los comandos necesarios.
+Incluir diagramas UML que describen la estructura y el diseño del sistema. Puedes añadir imágenes o enlaces a los diagramas UML.
 
-```bash
-# Clonar el repositorio
-git clone https://github.com/usuario/nombre-del-proyecto.git
+![Diagrama de clases](ruta/al/diagrama-de-clases.png)
 
-# Navegar al directorio del proyecto
-cd nombre-del-proyecto
+## Base de Datos
 
-# Instalar las dependencias
-npm install
+Descripción de la estructura de la base de datos, esquemas, y cómo se gestionan los datos. Puedes incluir diagramas ER y scripts SQL.
+
+```sql
+CREATE TABLE ejemplo (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100)
+);
