@@ -1,6 +1,7 @@
 # Nombre del Proyecto
 
 Una breve descripción del proyecto, explicando su propósito y objetivos principales.
+
 # Use To Code
 
 ![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
@@ -11,6 +12,7 @@ Una breve descripción del proyecto, explicando su propósito y objetivos princi
 ![VSCode](https://img.shields.io/badge/Visual_Studio-0078d7?style=for-the-badge&logo=visual%20studio&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Python](https://img.shields.io/badge/Python_-092749?style=for-the-badge&logo=Python&logoColor=06B6D4&labelColor=000000)
+
 ## Tabla de Contenidos
 
 - [UML](/M5)
@@ -18,12 +20,11 @@ Una breve descripción del proyecto, explicando su propósito y objetivos princi
 - [Programación](#programación)
 - [Web](#web)
 
-
 ## UML
 
 Incluir diagramas UML que describen la estructura y el diseño del sistema. Puedes añadir imágenes o enlaces a los diagramas UML.
 
-![Diagrama de clases](ruta/al/diagrama-de-clases.png)
+![Diagrama de clases](readmeImg/imgae.png)
 
 ## Base de Datos
 
@@ -34,4 +35,3 @@ CREATE TABLE ejemplo (
     id INT PRIMARY KEY,
     nombre VARCHAR(100)
 );
-
