@@ -1,26 +1,37 @@
-  # Nombre del Proyecto
+# Nombre del Proyecto
 
 Una breve descripción del proyecto, explicando su propósito y objetivos principales.
+# Use To Code
 
+![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
+![MySQL](https://img.shields.io/badge/-MYSQL-61DBFB?style=for-the-badge&labelColor=black&logo=MYSQL&logoColor=61DBFB)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+![VSCode](https://img.shields.io/badge/Visual_Studio-0078d7?style=for-the-badge&logo=visual%20studio&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Python](https://img.shields.io/badge/Python_-092749?style=for-the-badge&logo=Python&logoColor=06B6D4&labelColor=000000)
 ## Tabla de Contenidos
 
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Características](#características)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
-- [Créditos](#créditos)
+- [UML](/M5)
+- [Base de Datos](#base-de-datos)
+- [Programación](#programación)
+- [Web](#web)
 
-## Instalación
 
-Instrucciones para configurar y ejecutar el proyecto en una máquina local. Incluye los requisitos previos y los comandos necesarios.
+## UML
 
-```bash
-# Clonar el repositorio
-git clone https://github.com/usuario/nombre-del-proyecto.git
+Incluir diagramas UML que describen la estructura y el diseño del sistema. Puedes añadir imágenes o enlaces a los diagramas UML.
 
-# Navegar al directorio del proyecto
-cd nombre-del-proyecto
+![Diagrama de clases](ruta/al/diagrama-de-clases.png)
 
-# Instalar las dependencias
-npm install
+## Base de Datos
+
+Descripción de la estructura de la base de datos, esquemas, y cómo se gestionan los datos. Puedes incluir diagramas ER y scripts SQL.
+
+```sql
+CREATE TABLE ejemplo (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100)
+);
+
