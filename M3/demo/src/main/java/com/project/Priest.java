@@ -1,19 +1,29 @@
 package com.project;
 
-public class Priest extends Specialunit {
+public class Priest extends SpecialUnit {
+    private static final int ARMOR_PRIEST = 30;
+    private static final int BASE_DAMAGE_PRIEST = 100;
 
-    public final int CHANCE_ATTACK_AGAIN_PRIEST = 0;
-
-    public Priest(int initialArmor, int baseDamage) {
-        this.armor = 0;
+    public Priest(int technologyDefenseLevel, int technologyAttackLevel) {
+        this.armor = ARMOR_PRIEST + (int)(technologyDefenseLevel * PLUS_ARMOR_PRIEST_BY_TECHNOLOGY) * ARMOR_PRIEST / 100;
         this.initialArmor = this.armor;
-        this.baseDamage = baseDamage;
+        this.baseDamage = BASE_DAMAGE_PRIEST + (int)(technologyAttackLevel * PLUS_ATTACK_PRIEST_BY_TECHNOLOGY) * BASE_DAMAGE_PRIEST / 100;
         this.experience = 0;
+        this.unitID = generateUnitID();
+    }
+
+    public Priest() {
+        this.armor = ARMOR_PRIEST;
+        this.initialArmor = this.armor;
+        this.baseDamage = BASE_DAMAGE_PRIEST;
+        this.experience = 0;
+        this.sanctified = false;
+        this.unitID = generateUnitID();
     }
 
     @Override
     public int attack() {
-        int calculatedDamage = 0;
+        int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
         return calculatedDamage;
     }
 
@@ -24,7 +34,7 @@ public class Priest extends Specialunit {
 
     @Override
     public int getActualArmor() {
-        return (int) (armor + initialArmor * experience * PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT / 100);
+        return (int)(armor + initialArmor * experience * PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT / 100);
     }
 
     @Override
@@ -48,7 +58,7 @@ public class Priest extends Specialunit {
     }
 
     @Override
-    public int getChanceGeneratinWaste() {
+    public int getChanceGeneratingWaste() {
         return CHANCE_GENERATNG_WASTE_PRIEST;
     }
 
@@ -63,12 +73,16 @@ public class Priest extends Specialunit {
     }
 
     @Override
-    public void setExperience(int exp) {
-        experience = exp;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     @Override
     public int getExperience() {
         return experience;
+    }
+
+    private String generateUnitID() {
+        return "PRS" + System.currentTimeMillis();
     }
 }

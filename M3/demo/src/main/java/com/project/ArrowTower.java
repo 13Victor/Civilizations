@@ -1,26 +1,34 @@
 package com.project;
 
-public class ArrowTower extends DefenseUnit{
-  
-    private final static int ARMOR_ARROWTOWER = 200;
-    private final static int BASE_DAMAGE_ARROWTOWER = 80;
+public class ArrowTower extends DefenseUnit {
+    private static final int ARMOR_ARROWTOWER = 200;
+    private static final int BASE_DAMAGE_ARROWTOWER = 80;
 
-    
-    public ArrowTower(int technologyDefenseLevel, int technologyAttackLevel){
-        this.armor = ARMOR_ARROWTOWER + (int)(technologyDefenseLevel*PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY)*ARMOR_ARROWTOWER/100;
+    public ArrowTower(int technologyDefenseLevel, int technologyAttackLevel) {
+        this.armor = ARMOR_ARROWTOWER + (int)(technologyDefenseLevel * PLUS_ARMOR_ARROWTOWER_BY_TECHNOLOGY) * ARMOR_ARROWTOWER / 100;
         this.initialArmor = this.armor;
-        this.baseDamage = BASE_DAMAGE_ARROWTOWER + (int)(technologyAttackLevel*PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY)*BASE_DAMAGE_ARROWTOWER/100;
+        this.baseDamage = BASE_DAMAGE_ARROWTOWER + (int)(technologyAttackLevel * PLUS_ATTACK_ARROWTOWER_BY_TECHNOLOGY) * BASE_DAMAGE_ARROWTOWER / 100;
         this.experience = 0;
         this.sanctified = false;
+        this.unitID = generateUnitID();
+    }
+
+    public ArrowTower() {
+        this.armor = ARMOR_ARROWTOWER;
+        this.initialArmor = this.armor;
+        this.baseDamage = BASE_DAMAGE_ARROWTOWER;
+        this.experience = 0;
+        this.sanctified = false;
+        this.unitID = generateUnitID();
     }
 
     @Override
-    public int attack(){
+    public int attack() {
         int calculatedDamage = (int)(baseDamage + baseDamage * experience * PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT / 100);
-        if (sanctified){
-            calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED /100;
+        if (sanctified) {
+            calculatedDamage += baseDamage * PLUS_ATTACK_UNIT_SANCTIFIED / 100;
         }
-        return calculatedDamage;  
+        return calculatedDamage;
     }
 
     @Override
@@ -30,36 +38,36 @@ public class ArrowTower extends DefenseUnit{
 
     @Override
     public int getActualArmor() {
-        return (int)(armor+initialArmor*experience*PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT/100);
+        return (int)(armor + initialArmor * experience * PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT / 100);
     }
 
     @Override
-    public int getFoodCost(){
+    public int getFoodCost() {
         return FOOD_COST_ARROWTOWER;
     }
 
     @Override
-    public int getWoodCost(){
+    public int getWoodCost() {
         return WOOD_COST_ARROWTOWER;
     }
 
     @Override
-    public int getIronCost(){
+    public int getIronCost() {
         return IRON_COST_ARROWTOWER;
     }
 
     @Override
-    public int getManaCost(){
+    public int getManaCost() {
         return MANA_COST_ARROWTOWER;
     }
 
     @Override
-    public int getChanceGeneratinWaste(){
+    public int getChanceGeneratingWaste() {
         return CHANCE_GENERATNG_WASTE_ARROWTOWER;
     }
 
     @Override
-    public int getChanceAttackAgain(){
+    public int getChanceAttackAgain() {
         return CHANCE_ATTACK_AGAIN_ARROWTOWER;
     }
 
@@ -69,8 +77,8 @@ public class ArrowTower extends DefenseUnit{
     }
 
     @Override
-    public void setExperience(int exp) {
-        experience = exp;
+    public void setExperience(int experience) {
+        this.experience = experience;
     }
 
     @Override
@@ -78,5 +86,7 @@ public class ArrowTower extends DefenseUnit{
         return experience;
     }
 
-
+    private String generateUnitID() {
+        return "AT" + System.currentTimeMillis();
+    }
 }
