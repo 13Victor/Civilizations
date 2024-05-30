@@ -26,20 +26,20 @@ public interface MilitaryUnit {
 
     public abstract int getExperience();
 
-    public abstract String getUnitID(); // Añadir método para obtener el ID de la unidad
+    public abstract String getUnitID(); 
 
-    public abstract void setUnitID(String unitID); // Añadir método para establecer el ID de la unidad
+    public abstract void setUnitID(String unitID); 
 
-    public abstract int getArmor(); // Añadir método para obtener la armadura actual
+    public abstract int getArmor(); 
 
-    public abstract void setArmor(int armor); // Añadir método para establecer la armadura
+    public abstract void setArmor(int armor); 
 
-    public abstract int getBaseDamage(); // Añadir método para obtener el daño base
+    public abstract int getBaseDamage(); 
 
-    public abstract void setBaseDamage(int baseDamage); // Añadir método para establecer el daño base
+    public abstract void setBaseDamage(int baseDamage); 
 
-    public abstract boolean isSanctified(); // Añadir método para verificar si la unidad está santificada
+    public abstract boolean isSanctified(); 
 
-    public abstract void setSanctified(boolean sanctified); // Añadir método para establecer si la unidad está santificada
+    public abstract void setSanctified(boolean sanctified); 
 }
 

@@ -2,7 +2,9 @@ package com.project;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CivilizationDao {
 
@@ -22,16 +24,173 @@ public class CivilizationDao {
     }
 
 
-    public void insertUnit(String unitName) {
-        String sql = "INSERT INTO units (type) VALUES (?)";
-
+    public int getCivilizationIdByName(String name) {
+        String sql = "SELECT civilization_id FROM civilization_stats WHERE name = ?";
         try (Connection connection = AppData.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, unitName);
+            statement.setString(1, name);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("civilization_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Indica que no se encontró
+    }
+
+    public List<String> getSavedGames() {
+        List<String> savedGames = new ArrayList<>();
+        String sql = "SELECT name FROM civilization_stats";
+        try (Connection connection = AppData.getInstance().getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery(sql)) {
+            while (rs.next()) {
+                savedGames.add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return savedGames;
+    }
+
+    public boolean hasEnoughResources(int food, int wood, int iron, int mana, int civilizationId) {
+        String sql = "SELECT food_amount, wood_amount, iron_amount, mana_amount FROM civilization_stats WHERE civilization_id = ?";
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, civilizationId);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    int currentFood = rs.getInt("food_amount");
+                    int currentWood = rs.getInt("wood_amount");
+                    int currentIron = rs.getInt("iron_amount");
+                    int currentMana = rs.getInt("mana_amount");
+                    return currentFood >= food && currentWood >= wood && currentIron >= iron && currentMana >= mana;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void updateResources(int food, int wood, int iron, int mana, int civilizationId) {
+        String sql = "UPDATE civilization_stats SET food_amount = food_amount - ?, wood_amount = wood_amount - ?, iron_amount = iron_amount - ?, mana_amount = mana_amount - ? WHERE civilization_id = ?";
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, food);
+            statement.setInt(2, wood);
+            statement.setInt(3, iron);
+            statement.setInt(4, mana);
+            statement.setInt(5, civilizationId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void insertUnit(String unitName, int civilizationId) {
+        String sql = "INSERT INTO attack_units_stats (civilization_id, unit_id, type_unit, armor, base_damage, experience, sanctified) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, civilizationId);
+            statement.setString(2, generateUnitId());
+            statement.setString(3, unitName);
+            statement.setInt(4, 0); // Armor por defecto
+            statement.setInt(5, 0); // Base damage por defecto
+            statement.setInt(6, 0); // Experience por defecto
+            statement.setString(7, "NO"); // Sanctified por defecto
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String generateUnitId() {
+        return "UNIT" + System.currentTimeMillis();
+    }
+
+    public int getFood(int civilizationId) {
+        return getResourceAmount("food_amount", civilizationId);
+    }
+
+    public int getWood(int civilizationId) {
+        return getResourceAmount("wood_amount", civilizationId);
+    }
+
+    public int getIron(int civilizationId) {
+        return getResourceAmount("iron_amount", civilizationId);
+    }
+
+    public int getMana(int civilizationId) {
+        return getResourceAmount("mana_amount", civilizationId);
+    }
+
+    private int getResourceAmount(String resource, int civilizationId) {
+        String sql = "SELECT " + resource + " FROM civilization_stats WHERE civilization_id = ?";
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, civilizationId);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(resource);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public Civilization getSaveByName(String name) {
+        Connection con = AppData.getInstance().getConnection();
+        String civilizationSql = "SELECT * FROM civilization_stats WHERE name = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Civilization civ = null;
+
+        try {
+            ps = con.prepareStatement(civilizationSql);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                civ = new Civilization();
+                civ.setSavedId(rs.getInt("civilization_id"));
+                civ.setName(rs.getString("name"));
+                civ.setWood(rs.getInt("wood_amount"));
+                civ.setIron(rs.getInt("iron_amount"));
+                civ.setFood(rs.getInt("food_amount"));
+                civ.setMana(rs.getInt("mana_amount"));
+                civ.setMagicTower(rs.getInt("magicTower_counter"));
+                civ.setChurch(rs.getInt("church_counter"));
+                civ.setFarm(rs.getInt("farm_counter"));
+                civ.setSmithy(rs.getInt("smithy_counter"));
+                civ.setCarpentry(rs.getInt("carpentry_counter"));
+                civ.setTechnologyDefense(rs.getInt("technology_defense_level"));
+                civ.setTechnologyAttack(rs.getInt("technology_attack_level"));
+                civ.setBattles(rs.getInt("battles_counter"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (rs != null) rs.close();
+                if (con != null) con.close(); // Cerrar la conexión aquí
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Cargar unidades de ataque
+        if (civ != null) {
+            civ.setOwnArmy(getUnits(con, civ.getSavedId()));
+            civ.setSpecialUnits(getSpecialUnits(con, civ.getSavedId()));
+            civ.setDefenseUnits(getDefenseUnits(con, civ.getSavedId()));
+        }
+
+        return civ;
     }
 
     public void addSave(Civilization save) {
@@ -72,6 +231,7 @@ public class CivilizationDao {
             try {
                 if (ps != null) ps.close();
                 if (rs != null) rs.close();
+                if (con != null) con.close(); // Cerrar la conexión aquí
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -168,25 +328,25 @@ public class CivilizationDao {
                 civ.setTechnologyAttack(rs.getInt("technology_attack_level"));
                 civ.setBattles(rs.getInt("battles_counter"));
             }
+
+            // Cargar unidades de ataque
+            if (civ != null) {
+                civ.setOwnArmy(getUnits(con, civilizationId));
+                civ.setSpecialUnits(getSpecialUnits(con, civilizationId));
+                civ.setDefenseUnits(getDefenseUnits(con, civilizationId));
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
                 if (ps != null) ps.close();
                 if (rs != null) rs.close();
+                if (con != null) con.close(); // Cerrar la conexión aquí
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-        // Cargar unidades de ataque
-        civ.setOwnArmy(getUnits(con, civilizationId));
-
-        // Cargar unidades especiales
-        civ.setSpecialUnits(getSpecialUnits(con, civilizationId));
-
-        // Cargar unidades de defensa
-        civ.setDefenseUnits(getDefenseUnits(con, civilizationId));
 
         return civ;
     }
@@ -307,4 +467,117 @@ public class CivilizationDao {
             e.printStackTrace();
         }
     }
+
+    
+
+    // Otros métodos existentes
+
+    public List<Map<String, Object>> getCivilizationUnits(int civilizationId) {
+        String sql = "SELECT type_unit, COUNT(*) AS unit_count FROM attack_units_stats WHERE civilization_id = ? GROUP BY type_unit";
+        return queryWithParams(sql, civilizationId);
+    }
+
+    public List<Map<String, Object>> getEnemyUnits() {
+        String sql = "SELECT type_unit, COUNT(*) AS unit_count FROM enemy_units_stats GROUP BY type_unit";
+        return query(sql);
+    }
+
+
+    private List<Map<String, Object>> query(String sql) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try (Connection connection = AppData.getInstance().getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    row.put(metaData.getColumnLabel(i), rs.getObject(i));
+                }
+                resultList.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultList;
+    }
+
+    private List<Map<String, Object>> queryWithParams(String sql, int param) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, param);
+            try (ResultSet rs = stmt.executeQuery()) {
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+
+                while (rs.next()) {
+                    Map<String, Object> row = new HashMap<>();
+                    for (int i = 1; i <= columnCount; i++) {
+                        row.put(metaData.getColumnLabel(i), rs.getObject(i));
+                    }
+                    resultList.add(row);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultList;
+    }
+
+    public List<Map<String, Object>> getBattleLog(int civilizationId) {
+        String sql = "SELECT type_unit, COUNT(*) AS unit_count FROM enemy_units_stats WHERE civilization_id = ? GROUP BY type_unit";
+        return queryWithParameters(sql, civilizationId);
+    }
+
+    private List<Map<String, Object>> queryWithParameters(String sql, int civilizationId) {
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, civilizationId);
+            try (ResultSet rs = statement.executeQuery()) {
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+
+                while (rs.next()) {
+                    Map<String, Object> row = new HashMap<>();
+                    for (int i = 1; i <= columnCount; i++) {
+                        row.put(metaData.getColumnLabel(i), rs.getObject(i));
+                    }
+                    resultList.add(row);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultList;
+    }
+
+    public List<Map<String, Object>> getBattleData(int civilizationId) {
+        String sql = "SELECT type_unit, COUNT(*) AS unit_count, 'enemy' AS enemy_type_unit, COUNT(*) AS enemy_unit_count FROM attack_units_stats WHERE civilization_id = ? GROUP BY type_unit";
+        List<Map<String, Object>> battleData = new ArrayList<>();
+
+        try (Connection connection = AppData.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, civilizationId);
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    Map<String, Object> row = new HashMap<>();
+                    row.put("type_unit", rs.getString("type_unit"));
+                    row.put("unit_count", rs.getInt("unit_count"));
+                    row.put("enemy_type_unit", rs.getString("enemy_type_unit"));
+                    row.put("enemy_unit_count", rs.getInt("enemy_unit_count"));
+                    battleData.add(row);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return battleData;
+    }
+
+    
 }

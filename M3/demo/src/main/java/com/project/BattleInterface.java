@@ -23,8 +23,10 @@ public class BattleInterface extends JFrame {
     private List<MilitaryUnit> civilizationUnits;
     private List<MilitaryUnit> enemyUnits;
     private StringBuilder battleLog;
+    private Civilization civilization;
 
-    public BattleInterface() {
+    public BattleInterface(Civilization civilization) {
+        this.civilization = civilization;
         setTitle("La Batalla Comienza");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -34,19 +36,20 @@ public class BattleInterface extends JFrame {
         enemyUnits = new ArrayList<>();
         battleLog = new StringBuilder();
 
-        // Example units, you can add your own logic to initialize these
+        
         civilizationUnits.add(new Swordsman(5, 5));
         civilizationUnits.add(new Spearman(5, 5));
+        civilizationUnits.add(new Cannon(5,5));
         enemyUnits.add(new Cannon(5, 5));
 
         JPanel materialsPanel = new JPanel();
         materialsPanel.setLayout(new BoxLayout(materialsPanel, BoxLayout.Y_AXIS));
         materialsPanel.setBorder(BorderFactory.createTitledBorder("Materiales"));
 
-        JPanel foodPanel = createMaterialPanel("Comida", "/com/project/fotos/steak.png", foodLabel = new JLabel("0"));
-        JPanel woodPanel = createMaterialPanel("Madera", "/com/project/fotos/wood.png", woodLabel = new JLabel("0"));
-        JPanel ironPanel = createMaterialPanel("Hierro", "/com/project/fotos/iron.png", ironLabel = new JLabel("0"));
-        JPanel manaPanel = createMaterialPanel("Mana", "/com/project/fotos/mana.png", manaLabel = new JLabel("0"));
+        JPanel foodPanel = createMaterialPanel("Comida", "/com/project/fotos/steak.png", foodLabel = new JLabel(String.valueOf(civilization.getFood())));
+        JPanel woodPanel = createMaterialPanel("Madera", "/com/project/fotos/wood.png", woodLabel = new JLabel(String.valueOf(civilization.getWood())));
+        JPanel ironPanel = createMaterialPanel("Hierro", "/com/project/fotos/iron.png", ironLabel = new JLabel(String.valueOf(civilization.getIron())));
+        JPanel manaPanel = createMaterialPanel("Mana", "/com/project/fotos/mana.png", manaLabel = new JLabel(String.valueOf(civilization.getMana())));
 
         materialsPanel.add(foodPanel);
         materialsPanel.add(woodPanel);
@@ -72,13 +75,15 @@ public class BattleInterface extends JFrame {
         add(materialsPanel, BorderLayout.EAST);
         add(battleFieldPanel, BorderLayout.CENTER);
 
-        // Add action listener to the upgrade button
+        
         upgradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new GameInterface();
             }
         });
+
+       
 
         // Timer para actualizar los materiales cada segundo (1000 ms)
         Timer materialTimer = new Timer(1000, new ActionListener() {
@@ -90,7 +95,7 @@ public class BattleInterface extends JFrame {
         materialTimer.start();
 
         // Timer para mostrar el popup cada tres minutos (180000 ms)
-        Timer popupTimer = new Timer(180000, new ActionListener() {
+        Timer popupTimer = new Timer(60000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 simulateBattle();
@@ -117,10 +122,10 @@ public class BattleInterface extends JFrame {
     }
 
     private void incrementMaterials() {
-        food += 10; // Incrementa comida en 10
-        wood += 5; // Incrementa madera en 5
-        iron += 3; // Incrementa hierro en 3
-        mana += 2; // Incrementa mana en 2
+        food += 20; 
+        wood += 10; 
+        iron += 6; 
+        mana += 0; 
 
         foodLabel.setText(String.valueOf(food));
         woodLabel.setText(String.valueOf(wood));
@@ -206,6 +211,6 @@ public class BattleInterface extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new BattleInterface());
+        SwingUtilities.invokeLater(() -> new BattleInterface(new Civilization("Test Civilization")));
     }
 }

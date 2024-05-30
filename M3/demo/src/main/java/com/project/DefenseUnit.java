@@ -8,7 +8,7 @@ public abstract class DefenseUnit implements MilitaryUnit, Variables {
     protected int baseDamage;
     protected int experience;
     protected boolean sanctified;
-    protected String unitID; // Agregar campo unitID
+    protected String unitID; 
 
     // Getters y Setters para unitID
     @Override

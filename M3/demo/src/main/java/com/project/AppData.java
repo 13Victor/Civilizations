@@ -11,12 +11,11 @@ public class AppData {
     private Connection conn;
 
     private AppData() {
-        // Conecta al crear la primera instancia
         connect();
     }
 
-    // Singleton
-    public static AppData getInstance() {
+    // Singleton con sincronización
+    public static synchronized AppData getInstance() {
         if (instance == null) {
             instance = new AppData();
         }
@@ -24,8 +23,8 @@ public class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@//localhost:1521/XEPDB1"; // Cambia esto según tu configuración
-        String user = "oracle"; // Cambia esto según tu configuración
+        String url = "jdbc:oracle:thin:@//localhost:1521/xe"; // Cambia esto según tu configuración
+        String user = "system"; // Cambia esto según tu configuración
         String password = "oracle"; // Cambia esto según tu configuración
         try {
             // Cargar el driver de Oracle
@@ -33,19 +32,28 @@ public class AppData {
             conn = DriverManager.getConnection(url, user, password);
             conn.setAutoCommit(false); // Desactiva el autocommit para permitir control manual de transacciones
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error al conectar con la base de datos: " + e.getMessage());
         }
     }
 
     public Connection getConnection() {
+        try {
+            if (conn == null || conn.isClosed()) {
+                connect();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la conexión: " + e.getMessage());
+        }
         return conn;
     }
 
     public void close() {
         try {
-            if (conn != null) conn.close();
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error al cerrar la conexión: " + e.getMessage());
         }
     }
 
@@ -56,12 +64,11 @@ public class AppData {
             stmt.executeUpdate(sql);
             conn.commit(); // Confirma los cambios
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error al actualizar: " + e.getMessage());
             try {
                 conn.rollback(); // Revierte los cambios en caso de error
             } catch (SQLException ex) {
-                System.out.println("Error al hacer rollback.");
-                ex.printStackTrace();
+                System.out.println("Error al hacer rollback: " + ex.getMessage());
             }
         } finally {
             try {
@@ -86,12 +93,11 @@ public class AppData {
                 generatedId = rs.getInt(1); // Recupera el último ID insertado
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error al insertar y obtener ID: " + e.getMessage());
             try {
                 conn.rollback(); // Revertir la transacción en caso de error
             } catch (SQLException ex) {
-                System.out.println("Error durante el rollback.");
-                ex.printStackTrace();
+                System.out.println("Error durante el rollback: " + ex.getMessage());
             }
         } finally {
             try {
@@ -125,7 +131,7 @@ public class AppData {
                 resultList.add(row);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error al realizar la consulta: " + e.getMessage());
         } finally {
             try {
                 if (rs != null) rs.close();

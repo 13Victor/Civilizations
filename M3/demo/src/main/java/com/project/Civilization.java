@@ -41,7 +41,17 @@ public class Civilization implements Variables {
         defenseUnits = new ArrayList<>();
     }
 
-    // Getters y Setters para todas las propiedades
+    public Civilization(String name) {
+        this.name = name;
+        this.food = 0;
+        this.wood = 0;
+        this.iron = 0;
+        this.mana = 0;
+        this.ownArmy = new ArrayList<>();
+        this.specialUnits = new ArrayList<>();
+        this.defenseUnits = new ArrayList<>();
+    }
+
 
     public int getSavedId() {
         return savedId;
@@ -200,8 +210,7 @@ public class Civilization implements Variables {
         return total;
     }
 
-    // Métodos existentes de Civilization
-    // ...
+    
     public void upgradeTechnologyDefense() throws ResourceException {
         int currentIronCost = upgradeDefenseTechnologyIronCost;
         int currentWoodCost = upgradeDefenseTechnologyWoodCost;
@@ -238,15 +247,15 @@ public class Civilization implements Variables {
         upgradeAttackTechnologyFoodCost += (int) (currentFoodCost * UPGRADE_TECH_COST_INCREASE_PERCENTAGE);
     }
 
-    private boolean hasEnoughResources(int foodCost, int woodCost, int ironCost, int manaCost) {
-        return (food >= foodCost) && (wood >= woodCost) && (iron >= ironCost) && (mana >= manaCost);
+    public boolean hasEnoughResources(int foodCost, int woodCost, int ironCost, int manaCost) {
+        return food >= foodCost && wood >= woodCost && iron >= ironCost && mana >= manaCost;
     }
 
-    private void consumeResources(int foodCost, int woodCost, int ironCost, int manaCost) {
-        food -= foodCost;
-        wood -= woodCost;
-        iron -= ironCost;
-        mana -= manaCost;
+    public void consumeResources(int foodCost, int woodCost, int ironCost, int manaCost) {
+        this.food -= foodCost;
+        this.wood -= woodCost;
+        this.iron -= ironCost;
+        this.mana -= manaCost;
     }
 
     public void newSwordsman(int n) throws ResourceException {
@@ -508,7 +517,7 @@ public class Civilization implements Variables {
         System.out.println(food + "\t\t" + wood + "\t\t" + iron + "\t\t" + mana);
         System.out.println("----------------------------------------GENERATION RESOURCES----------------------------------------");
         System.out.println("Food\t\tWood\t\tIron\t\tMana");
-        // Aquí deberías tener atributos que indiquen la generación de recursos, que no están definidos en la pregunta original
+        
         System.out.println("8000\t\t5000\t\t1500\t\t0");
     }
 }

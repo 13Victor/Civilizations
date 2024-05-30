@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 
 public class CivilizationMenu extends JFrame {
@@ -74,7 +75,15 @@ public class CivilizationMenu extends JFrame {
             }
         });
 
-        // Acción para el botón de CREDITS
+        
+        loadGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showLoadGameDialog();
+            }
+        });
+
+        
         creditsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +91,7 @@ public class CivilizationMenu extends JFrame {
             }
         });
 
-        // Acción para el botón de salida
+        
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,12 +122,48 @@ public class CivilizationMenu extends JFrame {
         return button;
     }
 
+    private void showLoadGameDialog() {
+        List<String> savedGames = civilizationDao.getSavedGames();
+    
+        String[] savedGamesArray = savedGames.toArray(new String[0]);
+    
+        JDialog loadGameDialog = new JDialog(this, "Load Game", true);
+        loadGameDialog.setSize(400, 200);
+        loadGameDialog.setLocationRelativeTo(this);
+        loadGameDialog.setLayout(new BorderLayout());
+    
+        JComboBox<String> gameSelectBox = new JComboBox<>(savedGamesArray);
+        loadGameDialog.add(gameSelectBox, BorderLayout.CENTER);
+    
+        JPanel buttonPanel = new JPanel();
+        JButton acceptButton = new JButton("Aceptar");
+        acceptButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedGame = (String) gameSelectBox.getSelectedItem();
+                System.out.println("Partida seleccionada: " + selectedGame);
+                loadGameDialog.dispose(); // Cerrar el diálogo
+                
+                int civilizationId = civilizationDao.getCivilizationIdByName(selectedGame);
+                if (civilizationId != -1) {
+                    Civilization loadedCivilization = civilizationDao.getSave(civilizationId);
+                    new BattleInterface(loadedCivilization).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al cargar la partida seleccionada.");
+                }
+            }
+        });
+        buttonPanel.add(acceptButton);
+        loadGameDialog.add(buttonPanel, BorderLayout.SOUTH);
+    
+        loadGameDialog.setVisible(true);
+    }
+
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel(URL imagePath) {
             try {
-                // Cargar la imagen de fondo
                 backgroundImage = ImageIO.read(imagePath);
             } catch (IOException e) {
                 System.err.println("Error: No se pudo cargar la imagen de fondo.");
@@ -169,10 +214,11 @@ public class CivilizationMenu extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     String playerName = nameField.getText();
-                    // Guardar el nombre del jugador en la base de datos
-                    civilizationDao.insertPlayer(playerName);
-                    System.out.println("Jugador: " + playerName);
-                    dispose(); // Cierra la ventana de login
+                    
+                    Civilization newCivilization = new Civilization(playerName);
+                    civilizationDao.addSave(newCivilization);
+                    new BattleInterface(newCivilization).setVisible(true);
+                    dispose(); 
                 }
             });
 
@@ -201,7 +247,7 @@ public class CivilizationMenu extends JFrame {
             closeButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    dispose(); // Cierra la ventana de créditos
+                    dispose(); 
                 }
             });
             creditsPanel.add(closeButton, gbc);

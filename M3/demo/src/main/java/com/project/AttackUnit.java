@@ -7,9 +7,9 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
     protected int baseDamage;
     protected int experience;
     protected boolean sanctified;
-    protected String unitID; // Agregar campo unitID
+    protected String unitID; 
 
-    // Getters y Setters para unitID
+    
     @Override
     public String getUnitID() {
         return unitID;
@@ -50,7 +50,7 @@ public abstract class AttackUnit implements MilitaryUnit, Variables {
         this.sanctified = sanctified;
     }
 
-    // Métodos abstractos que deben ser implementados por las clases concretas
+   
     @Override
     public abstract int attack();
 
